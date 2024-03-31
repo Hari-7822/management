@@ -1,0 +1,28 @@
+{% extends 'base.j2' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="head"><h4 class="head__name" >Hello {{user.username}}.<br/> you are a {% if user.is_superuser %} Admin{% else %} Staff {% endif %}</h4></div>
+
+        <div>
+        {% if stu == None %}
+            <h4>No Entries</h4>
+        {%else%}
+            {% for i in stu %}
+                <ul>
+                    <li><h4>{{i.name}}</h4></li>
+                </ul>
+            {% endfor %}
+        {%endif%}
+        </div>
+
+    {% else %}
+        <h4>Welcome</h4>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
