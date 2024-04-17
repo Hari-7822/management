@@ -24,5 +24,10 @@
 {% endblock %}
 
 {% block script %}
-
+$.ajax({
+    url: '{% url 'index' %}',
+    success: function(data) {
+        console.log(data);
+    }
+});
 {% endblock %}

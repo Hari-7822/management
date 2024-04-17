@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate 
 from django.core.validators import RegexValidator
 
 from .forms import LoginForm, SignupForm
-
+from .mixins import validate_user
 
 #validators
 def validator():
     roll_number= RegexValidator('[]')
 
 @login_required(login_url='/login/')
+@user_passes_test(validate_user)
 def index(request):
     return render(request, 'index.j2')
 
@@ -34,15 +35,23 @@ def login(request):
     else:
         form = LoginForm()
 
-    return render(request, 'forms/login.j2', {'form':form})
+    return render(request, "forms/login.j2", {'form':form})
 
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
+            user=form.cleaned_data['username']
+            role = form.cleaned_data['role']
+            print(role)
+            if role is "Admin":
+                user = form.user
+                user.is_superuser = True
+                # form.user.is_staff=True
+            elif role is "Staff":
+                user.is_staff=True
             form.save()
-            username = form.cleaned_data.get('username')
-            return redirect('login')  # Redirect to login page after successful registration
+            return redirect('login')
     else:
         form = SignupForm()
 
