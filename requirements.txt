@@ -5,3 +5,4 @@ django-crispy-forms
 pandas
 matplotlib
 python-docx
+c6198ff58f3d572354a67454efe695afc4e3a096f7f2d1bcb701eba945f8e5e5
