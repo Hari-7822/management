@@ -1,0 +1,15 @@
+(% extends 'base.html' %)
+
+{% block content %}
+
+<ul>
+{% if request.user %}
+<h2>{{request.user.username}}</h2>
+
+<ul>
+{% for i in user %}
+    <li id=user-{{i.id}}>{{i.name}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

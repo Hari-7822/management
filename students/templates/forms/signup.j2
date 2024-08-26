@@ -1,0 +1,13 @@
+{% extends './base.j2' %}
+
+{% block content %}
+
+    <form method="POST">
+     {% load crispy_forms_tags %}
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" value="SignUp" />
+        <p>Not a registered user,<a href = "{% url 'user_login' %}">Add User</a></p>
+    </form>
+
+{% endblock %}

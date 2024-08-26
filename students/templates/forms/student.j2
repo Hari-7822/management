@@ -1,0 +1,11 @@
+{% extends './base.j2' %}
+ 
+{% block content %}
+    {% load crispy_forms_tags %}
+    <form method = "POST" class="">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type='submit' class="" value="Add Record" />
+    </form>
+
+{% endblock %}

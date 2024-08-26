@@ -1,8 +1,7 @@
-django==5.0.3
-psycopg2
-django-sass
+django
+pillow
+django-jazzmin
 django-crispy-forms
-pandas
-matplotlib
-python-docx
-numpy
+crispy-bulma
+psycopg2
+uvicorn
