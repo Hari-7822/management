@@ -15,7 +15,7 @@ def Add_Student(request):
     if request.method == "POST":
         form=StudentForm(request.POST)
         if form.is_valid():
-            stu = form.cleaned_data.get['name']
+            stu = form.cleaned_data['name']
             messages.success(request, f"Student {stu} is added successfully") if form.save() else messages.error(request, f"Student not added")
     else:
         form = StudentForm()
@@ -29,13 +29,10 @@ def Edit_Student(request):
             form.save()
     else:
         form = StudentForm()
+    return render(request, 'forms/student.j2', {'form':form})
 
-    render(request, 'forms/student.j2', {'form':form})
 
+def View_Student(request, *input):
+    query=get_object_or_404(Student, username=input.username, id=input.id)
+    return render(request, 'student_view.j2', {'data':query})
 
-# def View_Student(request, *input):
-#     query=get_object_or_404(Student, username=input.username, id=input.id)
-#     if request.method == "POST":
-#         form=StudentForm(request.POST)
-#         if form.is_valid():
-#             pass

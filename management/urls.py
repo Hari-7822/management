@@ -29,7 +29,7 @@ admin_urls = [
 
 index=[
     path('/', list, name='index'),
-    path('student/', )
+    # path('student/', list )
 ]
 
 forms = [

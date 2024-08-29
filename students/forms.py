@@ -34,10 +34,34 @@ class LoginForm(AuthenticationForm):
         model = user
         # fields = ['username', 'password']
 
-class StudentForm(forms.Form):
-   
+class PasswordResetForm(forms.Form):
+    old_password = forms.PasswordInput(placeholder="Enter Your Old Password")
+    new_password = forms.PasswordInput(placeholder="Enter Your New Password")
+    new_password_verify = forms.PasswordInput(placeholder="Enter Your New Password again")
+
+    class meta():
+        model = user
+        fields = ['old_password', 
+                  'new_password',
+                  'new_password_verify'
+                  ]
+
+
+class ChangeUsernameForm(forms.Form):
+    old_username=forms.TextInput(widget=forms.TextInput)
+    new_username=forms.TextInput(widget=forms.TextInput)
+
+    class Meta():
+        model=user
+
+
+class StudentForm(ModelForm):
+
+    name=forms.CharField(max_length=255, widget=forms.TextInput)
+    age = forms.IntegerField(max_value=18, widget=forms.NumberInput)
     grade=forms.ChoiceField(choices=grade, widget=forms.CheckboxInput)
 
     class Meta():
         model = Student
-        fields='__all__' 
+        fields=["name","age","grade"]
+

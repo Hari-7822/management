@@ -8,8 +8,12 @@ from students.forms import UserCreationForm, LoginForm
 def signup(request):
     if request.method == 'POST':
             form = UserCreationForm(request.POST)
+            name=form.cleaned_data['username']
             if form.is_valid():
-                form.save()
+                if not user.objects.filter(username=name):
+                    form.save()
+                elif user.objects.filter(username=name):
+                    messages.error(request, f'Username ${name} already Exists! \nTry Again with new Username')
                 return redirect('list')  # Change to your desired redirect URL
     else:
         form = UserCreationForm()
@@ -33,16 +37,6 @@ def login(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
     # if request.method == "POST":
     #     form=UserCreationForm()
     #     name=form.cleaned_data['username']
@@ -56,15 +50,5 @@ def login(request):
     # return render(request, 'forms/signup.j2', {form:'form'})
  
 
-def login(request):
-    if request.method == "POST":
-        form=UserCreationForm()
-        name=form.cleaned_data['username']
-        if form.is_valid:
-            login()
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'forms/login.j2', {form:'form'})
 
 

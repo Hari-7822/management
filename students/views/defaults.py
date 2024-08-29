@@ -5,7 +5,7 @@ def PageNotFound(request, exception):
 
 def Unauthorised(request, exception):
     pass
-
+    
 def InternalServerError(request, exception):
     pass
 

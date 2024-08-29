@@ -2,7 +2,7 @@
  
 {% block content %}
     {% load crispy_forms_tags %}
-    <form method = "POST" class="">
+    <form method = "POST" class="form">
         {% csrf_token %}
         {{ form | crispy }}
         <input type='submit' class="" value="Add Record" />
