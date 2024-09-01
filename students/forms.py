@@ -1,9 +1,13 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Student, user, grade
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+
+from .models import Student, user, grade
+
 class AddUserForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
     ROLE_CHOICES = [('superuser', 'Superuser'),('staff', 'Staff')]
     role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.CheckboxInput)  
 
@@ -35,9 +39,9 @@ class LoginForm(AuthenticationForm):
         # fields = ['username', 'password']
 
 class PasswordResetForm(forms.Form):
-    old_password = forms.PasswordInput(placeholder="Enter Your Old Password")
-    new_password = forms.PasswordInput(placeholder="Enter Your New Password")
-    new_password_verify = forms.PasswordInput(placeholder="Enter Your New Password again")
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : "Enter your old password"}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : "Enter your new password"}))
+    new_password_verify = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : "Enter your new password again"}))
 
     class meta():
         model = user
@@ -48,8 +52,8 @@ class PasswordResetForm(forms.Form):
 
 
 class ChangeUsernameForm(forms.Form):
-    old_username=forms.TextInput(widget=forms.TextInput)
-    new_username=forms.TextInput(widget=forms.TextInput)
+    old_username=forms.CharField(widget=forms.TextInput(attrs={}))
+    new_username=forms.CharField(widget=forms.TextInput(attrs={'placeholder' : 'Your New Username'}))
 
     class Meta():
         model=user
@@ -57,11 +61,10 @@ class ChangeUsernameForm(forms.Form):
 
 class StudentForm(ModelForm):
 
-    name=forms.CharField(max_length=255, widget=forms.TextInput)
-    age = forms.IntegerField(max_value=18, widget=forms.NumberInput)
-    grade=forms.ChoiceField(choices=grade, widget=forms.CheckboxInput)
+    name=forms.CharField(max_length=255, widget=forms.TextInput())
+    age = forms.IntegerField(max_value=18, widget=forms.NumberInput())
+    grade=forms.ChoiceField(choices=grade, widget=forms.CheckboxInput())  
 
     class Meta():
         model = Student
         fields=["name","age","grade"]
-

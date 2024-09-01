@@ -16,7 +16,7 @@ def Add_Student(request):
         form=StudentForm(request.POST)
         if form.is_valid():
             stu = form.cleaned_data['name']
-            messages.success(request, f"Student {stu} is added successfully") if form.save() else messages.error(request, f"Student not added")
+            messages.success(request, f"Student {stu} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
     else:
         form = StudentForm()
 
@@ -26,13 +26,21 @@ def Edit_Student(request):
     if request.method == "POST":
         form=StudentForm(request.POST)
         if form.is_valid():
-            form.save()
+            if not Student.objects.filter(id = form.cleaned_data['roll_number']):
+                form.save()
+            else:
+                messages.error(request, f'Roll number {id} already exists!')
+                # form=StudentForm(request.POST)
     else:
         form = StudentForm()
     return render(request, 'forms/student.j2', {'form':form})
 
 
 def View_Student(request, *input):
-    query=get_object_or_404(Student, username=input.username, id=input.id)
+    query=get_object_or_404(Student, username=input.name, id=input.id)
     return render(request, 'student_view.j2', {'data':query})
 
+
+def PrintStudent(request, *input):
+    query = get_object_or_404(Student, id= input.id, username= input.name)
+    return render(request, 'print.j2', {'data':query})

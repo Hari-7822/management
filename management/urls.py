@@ -16,6 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
 
 from students.views.auth import signup, login
@@ -33,15 +34,22 @@ index=[
 ]
 
 forms = [
-    path("student/add",Add_Student, name='add_student'),
     path("signup/", signup, name='user_registration'),
-    path("login/", login, name='user_login'),
+    path("login/", LoginView.as_view(template_name="./forms/login.j2"), name='user_login'),
+    # path("user/change_username/",),
+    # path("user/change_password/",),
 ]
 
+students = [
+    path("student/add",Add_Student, name='add_student'),
+    path("student/Edit/",Add_Student, name='add_student'),
+    path('list/', list, name='list')
+]
 temp = [
     path('list/', list, name='list')
 ]
 
 urlpatterns.extend(admin_urls)
 urlpatterns.extend(forms)
+urlpatterns.extend(students)
 urlpatterns.extend(temp)
