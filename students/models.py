@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
 from datetime import datetime
 
 
@@ -29,10 +28,21 @@ grade = [
 ]
 
 class user(AbstractUser):
-    pass
+    ROLE_CHOICES = [
+        (True, 'SuperUser'),
+        (False, 'Staff'),
+    ]
+    
+    is_staff = models.BooleanField(choices=ROLE_CHOICES, default=False)
+
+    def __str__(self):
+        return f'User - {self.username}'
 
 class Student(models.Model):
     name = models.CharField(max_length=255)
     age = models.IntegerField()
     grade= models.CharField(max_length=6, choices=grade)
-    CreatedAt = models.DateTimeField(datetime.now, default=datetime.now)
+    CreatedAt = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}'

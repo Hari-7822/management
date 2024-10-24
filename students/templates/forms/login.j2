@@ -1,13 +1,25 @@
 {% extends './base.j2' %}
 
+{% block title %}
+    Login
+{% endblock %}
+
 {% load crispy_forms_tags %}
 {% block content %}
-
-    <form method="POST">
-        {% csrf_token %}
-        {{form | crispy}}
-        <input type="submit" value="Login" />
-        <a href="{% url 'user_registration' %}">Add User</a>
-    </form> 
+<div class="container form">
+    
+        <h2 class="form__header">Login</h2>
+        <form method="POST" class="form__form container form-group">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form__footer">
+                <button class="form __footer--btn btn btn-submit" type="submit">Login</button>
+                <p class="form__footer--text">Don't have account <a class="form__footer--link" href="{% url 'user_register' %}">SignUp</a></p>
+            </div>
+            
+        </form>
+        </div>
+</body>
+</html>
 
 {% endblock %}

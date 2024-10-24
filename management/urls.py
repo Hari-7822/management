@@ -1,8 +1,4 @@
 """
-URL configuration for management project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -17,9 +13,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
-from django.urls import path
-
-from students.views.auth import signup, login
+from django.urls import path, include
+from django.contrib.auth import urls
+from students.views.auth import user_signup, user_login
 from students.views.students import *
 
 urlpatterns = []
@@ -34,16 +30,14 @@ index=[
 ]
 
 forms = [
-    path("signup/", signup, name='user_registration'),
-    path("login/", LoginView.as_view(template_name="./forms/login.j2"), name='user_login'),
-    # path("user/change_username/",),
-    # path("user/change_password/",),
+    # path('user/', include('django.contrib.auth.urls')),
+    path('user/login/', user_login, name="user_login" ),
+    path("user/add_user/", user_signup,name="user_register")
 ]
 
 students = [
     path("student/add",Add_Student, name='add_student'),
     path("student/Edit/",Add_Student, name='add_student'),
-    path('list/', list, name='list')
 ]
 temp = [
     path('list/', list, name='list')
@@ -52,4 +46,4 @@ temp = [
 urlpatterns.extend(admin_urls)
 urlpatterns.extend(forms)
 urlpatterns.extend(students)
-urlpatterns.extend(temp)
+urlpatterns.extend(temp) 
