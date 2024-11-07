@@ -1,0 +1,4 @@
+pip list
+django shell
+Db ops
+Cipher -> Decipher

@@ -27,13 +27,15 @@ grade = [
 
 ]
 
+
+
 class user(AbstractUser):
     ROLE_CHOICES = [
         (True, 'SuperUser'),
         (False, 'Staff'),
     ]
     
-    is_staff = models.BooleanField(choices=ROLE_CHOICES, default=False)
+    Role = models.BooleanField(choices=ROLE_CHOICES, default=False)
 
     def __str__(self):
         return f'User - {self.username}'

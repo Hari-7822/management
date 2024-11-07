@@ -1,5 +1,5 @@
 from pathlib import Path
-
+from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,6 +19,8 @@ ALLOWED_HOSTS = ['localhost','127.0.0.7', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,6 +120,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'Assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -126,5 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL='students.user'
 
-LOGIN_URL = "/login/"
+LOGIN_URL = "user/login/"
 LOGIN_REDIRECT_URL = "/"
+
+APPEND_SLASH= True 

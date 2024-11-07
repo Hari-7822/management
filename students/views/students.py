@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required 
 
-from students.models import Student #for Student_profile
-from students.models import user #for User_profile
+from students.models import Student 
+from students.models import user 
 from students.forms import StudentForm
 
-
-def list(request):
+@login_required(login_url="user/login/")
+def index(request):
     list = user.objects.all()
+    print(request.user)
     return render(request, 'list.j2', {'user': list})
 
 def Add_Student(request):

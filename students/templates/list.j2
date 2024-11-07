@@ -1,15 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base.j2' %}
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
 <ul>
-{% if request.user %}
 <h2>{{request.user.username}}</h2>
-{% endif %}
 <ul>
 {% for i in user %}
     <li id=user-{{i.id}}>{{i.username}}</li>
 {% endfor %}
 </ul>
-
+{% else %}
+    <p class="Error__meaagae">NOT A VALID USER</p>
+{% endif %}
 {% endblock %}

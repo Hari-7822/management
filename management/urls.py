@@ -20,18 +20,17 @@ from students.views.students import *
 
 urlpatterns = []
 
+
 admin_urls = [
     path('admin/', admin.site.urls),
 ]
 
 index=[
-    path('/', list, name='index'),
-    # path('student/', list )
+    path('', index, name='index'),
 ]
 
 forms = [
-    # path('user/', include('django.contrib.auth.urls')),
-    path('user/login/', user_login, name="user_login" ),
+    path('user/login/', LoginView.as_view(template_name='./forms/login.j2'), name="user_login"),
     path("user/add_user/", user_signup,name="user_register")
 ]
 
@@ -40,10 +39,10 @@ students = [
     path("student/Edit/",Add_Student, name='add_student'),
 ]
 temp = [
-    path('list/', list, name='list')
+    # endpoints
 ]
 
 urlpatterns.extend(admin_urls)
 urlpatterns.extend(forms)
 urlpatterns.extend(students)
-urlpatterns.extend(temp) 
+urlpatterns.extend(index) 
