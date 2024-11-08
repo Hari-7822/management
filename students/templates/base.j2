@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load 'static' %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +24,11 @@
                         <p class="main__head--info__text">{{request.user.username}}</p>
                         <p class="main__head--info__role">{% if request.user.is_superuser is True %}Admin
                                                           {% else %}Staff</p>
-
+                                                          {% endif %}  
                     {% else %}
-                        <p class="main__head--info__text-misc">{{request.user.username}}</p>
+                        <p class="main__head--info__text-misc"></p>
                         <p class="main__head--info__role">Anonymous</p>
+                    {% endif %}
                 </div>
             </div>
 
