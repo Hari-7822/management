@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load 'static' %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Management{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
+    <title>{% block title %}Management{% endblock %}</title>
+    <link rel="stylesheet" href="{% static '' %}" />
 </head>
 <body>
     {% block header %}
-        
+        <div class="main">
+            <div class="main__head">
+                <div class="main__head--logo">
+                    <svg class="main__head--logo__img">
+                </div>
+                <h3 class="main__head--header">Title</h3>
+                
+                <div class="main__head--info">
+                    {% if request.user.is_authenticated %}
+                    #profile image gon be here
+                        <p class="main__head--info__text">{{request.user.username}}</p>
+                        <p class="main__head--info__role">{% if request.user.is_superuser is True %}Admin
+                                                          {% else %}Staff</p>
+
+                    {% else %}
+                        <p class="main__head--info__text-misc">{{request.user.username}}</p>
+                        <p class="main__head--info__role">Anonymous</p>
+                </div>
+            </div>
+
+        </div>
     {% endblock %}
+    
     {% block sidebar %}
-        
+    <div class = "sidebar">
+        <ul class="sidebar__nav">
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem__group">Page-1</li>
+            </div>
+
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem--group">Page-2</li>
+            </div>
+            
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem--group">Page-3</li>
+            </div>
+
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem--group">Page-4</li>
+            </div>
+        </ul>
+    </div>
     {% endblock %}
+ 
     {% block content %}
 
     {% endblock %}

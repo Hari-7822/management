@@ -6,8 +6,14 @@
 {% if request.user %}
 <h2>{{request.user.username}}</h2>
 {% endif %}
-{% for i in students %}
-    <li id='{{i.id}}'>{{i.name}}</li>
-{% endfor %}
+       <table>
+        <th>{% #header %}</th>
+        
+        <td>
+            {% for i in data %}
+
+            {% endfor %}
+        </td>
+    </table>
 </ul>
 {% endblock %}

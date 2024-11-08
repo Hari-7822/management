@@ -1,7 +1,8 @@
 django
-pillow
 django-jazzmin
+django-sass
 django-crispy-forms
 crispy-bootstrap4
-psycopg2
+pillow
 uvicorn
+psycopg2
