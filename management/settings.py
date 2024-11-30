@@ -127,7 +127,7 @@ MEDIA_URL = 'Assets/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL='students.user'
+# AUTH_USER_MODEL='students.user'
 
 LOGIN_URL = "user/login/"
 LOGIN_REDIRECT_URL = "/"

@@ -27,6 +27,9 @@ admin_urls = [
 
 index=[
     path('', index, name='index'),
+    path('info/', info, name="user_informatics"),
+    path('perms/', perms, name="user_perms"),
+    path('settings/', settings, name="user_settings"),
 ]
 
 forms = [

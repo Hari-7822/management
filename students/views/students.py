@@ -10,8 +10,20 @@ from students.forms import StudentForm
 @login_required(login_url="user/login/")
 def index(request):
     list = user.objects.all()
-    print(request.user)
-    return render(request, 'list.j2', {'user': list})
+    # print(request.user)
+    return render(request, 'list.j2', {'user': list,'meta': meta})
+
+@login_required(login_url="user/login")
+def info(request):
+    return "Info"
+
+@login_required(login_url="user/login")
+def perms(request):
+    return "Info"
+
+@login_required(login_url="user/login")
+def settings(request):
+    return "Info"
 
 def Add_Student(request):
     if request.method == "POST":
