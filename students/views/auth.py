@@ -9,20 +9,9 @@ def user_signup(request):
     if request.method == 'POST':
             form = SignupForm(request.POST)
             if form.is_valid():
-                user=form.save(commit=False)
-                name=form.cleaned_data['username']  
-                option=form.cleaned_data['role']
-                if option == 'superuser':
-                    user.is_superuser=True
-                    user.is_staff=True
-                elif option=='staff':
-                    user.is_superuser=False
-                    user.is_staff=False
-                if not user.objects.filter(username=name):
-                    user.save()
-                else:
-                    messages.error(request, f'Username ${name} already Exists! \nTry Again with new Username')
-                return redirect('user/login/')  
+                # name=form.cleaned_data['username'] 
+                form.save()
+                return redirect('login/')
     else:
         form = SignupForm()
     return render(request, 'forms/signup.j2', {'form': form})

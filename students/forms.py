@@ -9,16 +9,9 @@ from crispy_forms.layout import Submit
 from .models import Student, user, grade
 
 class SignupForm(UserCreationForm):
-    ROLE_CHOICES = [
-        (False, 'Staff'),
-        (True, 'Superuser'),
-    ]
-
-    role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.RadioSelect, initial=False)
-
     class Meta:
         model = user
-        fields = ['username', 'email', 'password1', 'password2', 'role']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

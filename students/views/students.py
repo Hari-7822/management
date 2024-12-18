@@ -11,7 +11,7 @@ from students.forms import StudentForm
 def index(request):
     list = user.objects.all()
     # print(request.user)
-    return render(request, 'list.j2', {'user': list,'meta': meta})
+    return render(request, 'list.j2', {'user': list})
 
 @login_required(login_url="user/login")
 def info(request):

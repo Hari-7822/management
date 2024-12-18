@@ -13,3 +13,4 @@ def import_books(request, file_path):
 if __name__ == '__main__':
     csv_file_path = '__input__'
     import_books(csv_file_path)
+    

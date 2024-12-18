@@ -30,13 +30,6 @@ grade = [
 
 
 class user(AbstractUser):
-    ROLE_CHOICES = [
-        (True, 'SuperUser'),
-        (False, 'Staff'),
-    ]
-    
-    Role = models.BooleanField(choices=ROLE_CHOICES, default=False)
-
     def __str__(self):
         return f'User - {self.username}'
 
@@ -51,4 +44,5 @@ class Student(models.Model):
 
 
 class preferences(models.Model):
-    user=models.ForeignKey
+    user=models.ForeignKey(user, on_delete=models.CASCADE)
+    theme=models.CharField(max_length=122)
