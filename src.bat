@@ -27,6 +27,6 @@ goto :eof
 
 timeout /T 2
 set /p inp=What you wanna do:
-if %inp%=
+if %inp%="migrate" 
 
 
