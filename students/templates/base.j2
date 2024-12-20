@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
     <title>{% block title %}Management{% endblock %}</title>
-    <link rel="stylesheet" type='text/css' href="{% static 'libs/bootstrap.min.css' %}"/>
+    {% block statics %}
+        <link rel="stylesheet" type='text/css' href="{% static 'libs/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" type='text/css' href="{% static 'sass/index.scss' %}"/>
 
-    <link rel="stylesheet" href="{% static '' %}" />
+        <link rel="stylesheet" href="{% static '' %}" />
+    {% endblock %}
 </head>
 <body>
     {% block header %}

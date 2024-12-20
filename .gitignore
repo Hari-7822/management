@@ -1,2 +1,7 @@
 /venv/
 */__pycache__/*
+
+./students/static/fonts/Fonts.zip
+
+*.log
+*.env

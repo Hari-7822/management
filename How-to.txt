@@ -1,0 +1,14 @@
+Create a Virtual-Environment -> py -m venv <virtual_environment_name>
+Activate Virtual-Environment -> 
+    For windows -> <virtual_environment_name>/Scripts/activate
+    For Linux -> <virtual_environment_name>/bin/activate
+
+Install Requirements -> pip install -r requirements.txt
+Migrating DataBase(PostgreSQL) -> edit the details in the .env file for your desired database in PostgreSQL Interface - PGAdmin
+    In virtual environment activated terminal, 
+    run -> py manage.py makemigrations
+    run -> py manage.py migrate
+
+Running the project,
+    In windows, run the src.bat file.
+    In linux, run src.sh file.
