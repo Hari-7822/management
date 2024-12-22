@@ -1,0 +1,37 @@
+@use './init';
+
+
+
+.main {
+    &__head{
+        &--logo{
+            &__img {
+
+            }
+        }
+
+        &--header{
+
+        }
+
+        &--info{
+            &__text{
+
+            }
+
+            &__role {
+
+            }
+        }
+    }
+}
+
+.sidebar{
+    &__nav {
+        &--elem {
+            &__group{
+                
+            }
+        }
+    }
+}

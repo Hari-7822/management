@@ -1,5 +1,10 @@
 from pathlib import Path
-from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS 
+from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+import environ
+
+env=environ.Env()
+env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^3=qgdf3^71#8d70#!%9u7u7l0i=)_8j!vi_y1s61wr140@6=0'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,11 +78,11 @@ WSGI_APPLICATION = 'management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'management', 
-        'USER': 'postgres',
-        'PASSWORD': '7822',
-        'HOST': 'localhost', 
-        'PORT': '5432',
+        'NAME': env("DB_NAME"), 
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST"), 
+        'PORT': env("DB_PORT"),
     }
 }
 
@@ -119,9 +124,8 @@ USE_TZ = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-
 STATIC_URL = 'static/'
-MEDIA_URL = 'Assets/'
+MEDIA_URL = 'assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

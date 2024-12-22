@@ -15,8 +15,10 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from django.contrib.auth import urls
+
 from students.views.auth import user_signup, user_login
 from students.views.students import *
+from students.views.user import *
 
 urlpatterns = []
 
@@ -25,7 +27,7 @@ admin_urls = [
     path('admin/', admin.site.urls),
 ]
 
-index=[
+main=[
     path('', index, name='index'),
     path('info/', info, name="user_informatics"),
     path('perms/', perms, name="user_perms"),
@@ -41,6 +43,10 @@ students = [
     path("student/add",Add_Student, name='add_student'),
     path("student/Edit/",Add_Student, name='add_student'),
 ]
+
+users= [
+    path(r"user/<str:username>", user_view, name="user_view")
+]
 temp = [
     # endpoints
 ]
@@ -48,4 +54,5 @@ temp = [
 urlpatterns.extend(admin_urls)
 urlpatterns.extend(forms)
 urlpatterns.extend(students)
-urlpatterns.extend(index) 
+urlpatterns.extend(main) 
+urlpatterns.extend(users) 

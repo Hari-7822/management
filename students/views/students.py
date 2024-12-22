@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from students.models import Student 
 from students.models import user 
 from students.forms import StudentForm
+from django.shortcuts import render, get_object_or_404
 
 @login_required(login_url="user/login/")
 def index(request):
@@ -53,9 +54,9 @@ def Add_Student(request):
 #     return render(request, 'forms/student.j2', {'form':form})
 
 
-# def View_Student(request, *input):
-#     query=get_object_or_404(Student, username=input.name, id=input.id)
-#     return render(request, 'student_view.j2', {'data':query})
+def user_view(request, name):
+    data = get_object_or_404(Student, name=name)
+    return render(request, 'student_view.j2', {'user': data})
 
 
 # def PrintStudent(request, *input):
