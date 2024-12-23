@@ -8,6 +8,9 @@ def user_view(request, username):
     data = get_object_or_404(user, username=username)
     return render(request, 'user_view.j2', {'user': data})
 
+def delete_self(request):
+    data = user.objects.delete(username=request.user.username)
+    return render(request, 'user_delete.j2', {'name': data})
 
 #Settings
 @login_required(login_url="user/login")

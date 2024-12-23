@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
+from django.apps import apps
 
 from students.models import Student 
 from students.models import user 
@@ -11,8 +12,10 @@ from django.shortcuts import render, get_object_or_404
 @login_required(login_url="user/login/")
 def index(request):
     list = user.objects.all()
+    mod = apps.get_models()
+    print(mod)
     # print(request.user)
-    return render(request, 'list.j2', {'user': list})
+    return render(request, 'list.j2', {'user': list, 'models': mod})
 
 @login_required(login_url="user/login")
 def info(request):
