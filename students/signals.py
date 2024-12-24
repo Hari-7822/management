@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save, post_delete, pre_save, pre_delete, pos
+from django.db.models.signals import post_save, post_delete, pre_save, pre_delete, post_migrate
 from django.dispatch import receiver
 from django.apps import apps
 

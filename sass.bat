@@ -1,15 +1,15 @@
 @echo off
 echo Activating the virtual environment...
-call venv/Scritps/activate
+call venv/Scripts/activate
 
-set /p inp=What you wanna do(watch(w)/migrate(m)): 
-if %inp%="w" (
+@REM set /p inp=What you wanna do(watch(w)/migrate(m)): 
+@REM if %inp%="w" (
     start py manage.py sass ./students/static/sass/ ./students/static/css/ --watch
-)
-if %inp% = "m" (
-    start py manage.py  ./students/static/sass/ ./students/static/css/ -g
-)
-else()
+@REM )
+@REM if %inp% = "m" (
+    @REM start py manage.py  ./students/static/sass/ ./students/static/css/ -g
+@REM )
+@REM else()
 
 
 @REM @echo off

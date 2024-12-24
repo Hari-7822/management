@@ -12,10 +12,7 @@ from django.shortcuts import render, get_object_or_404
 @login_required(login_url="user/login/")
 def index(request):
     list = user.objects.all()
-    mod = apps.get_models()
-    print(mod)
-    # print(request.user)
-    return render(request, 'list.j2', {'user': list, 'models': mod})
+    return render(request, 'list.j2', {'user': list})
 
 @login_required(login_url="user/login")
 def info(request):
