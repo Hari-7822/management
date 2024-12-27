@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required,permission_required
 from django.apps import apps
 
 from students.models import Student 
@@ -15,23 +15,14 @@ def index(request):
     return render(request, 'list.j2', {'user': list})
 
 @login_required(login_url="user/login")
-def info(request):
-    return "Info"
-
-@login_required(login_url="user/login")
-def perms(request):
-    return "Info"
-
-@login_required(login_url="user/login")
-def settings(request):
-    return "Info"
-
+# @permission_required()
 def Add_Student(request):
     if request.method == "POST":
         form=StudentForm(request.POST)
         if form.is_valid():
             stu = form.cleaned_data['name']
             form.save()
+            Student.objects.create()
             print(stu)
             messages.success(request, f"Student {stu} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
             return redirect("list/")
@@ -62,3 +53,16 @@ def user_view(request, name):
 # def PrintStudent(request, *input):
 #     query = get_object_or_404(Student, id= input.id, username= input.name)
 #     return render(request, 'print.j2', {'data':query})
+
+
+@login_required(login_url="user/login")
+def info(request):
+    return "Info"
+
+@login_required(login_url="user/login")
+def perms(request):
+    return "Info"
+
+@login_required(login_url="user/login")
+def settings(request):
+    return "Info"

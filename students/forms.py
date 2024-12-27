@@ -24,12 +24,22 @@ class LoginForm(AuthenticationForm):
         model = user
         # fields = ['username', 'password']
 
-class StudentForm(forms.Form):
+class StudentForm(forms.ModelForm):
     name=forms.CharField(max_length=255)
     age = forms.IntegerField()
-    grade=forms.ChoiceField(choices=grade, widget=forms.Select())  
+    grade=forms.ChoiceField(choices=grade, widget=forms.Select())
+    father_name= forms.CharField(max_length=255)
+    father_age=forms.IntegerField()
+    father_occupation= forms.CharField(max_length=255)
+    mother_name= forms.CharField(max_length=255)
+    mother_age=forms.IntegerField()
+    mother_occupation= forms.CharField(max_length=255)
+    # siblings = forms.InlineForeignKeyField(name)
+
 
     class Meta:
         model = Student
-        fields=["name","age", "grade"]
+        fields=('__all__')
 
+    def save(self, *args, **kwargs):
+        self.Meta.model.objects.create(name=args.name, age=args.age, )
