@@ -9,7 +9,7 @@
     <title>{% block title %}Management{% endblock %}</title>
     {% block statics %}
         <link rel="stylesheet" type='text/css' href="{% static 'libs/bootstrap.min.css' %}"/>
-        <link rel="stylesheet" type='text/css' href="{% static 'sass/base.scss' %}"/>
+        <link rel="stylesheet" type='text/css' href="{% static 'css/base.css' %}"/>
 
         <link rel="stylesheet" href="{% static '' %}" />
     {% endblock %}
@@ -25,14 +25,7 @@
                 
                 <div class="main__head--info">
                     {% if request.user.is_authenticated %}
-                    #profile image gon be here
-                        <p class="main__head--info__text">{{request.user.username}}</p>
-                        <p class="main__head--info__role">{% if request.user.is_superuser is True %}Admin
-                                                          {% else %}Staff</p>
-                                                          {% endif %}  
-                    {% else %}
-                        <p class="main__head--info__text-misc"></p>
-                        <p class="main__head--info__role">Anonymous</p>
+                        <p class="main__head--info__text">{{request.user.username}}</p><p class="main__head--info__role">{% if request.user.is_superuser is True %}Admin{% else %}Staff</p>{% endif %}{% else %}<p class="main__head--info__text-misc"></p> <p class="main__head--info__role">Anonymous</p>
                     {% endif %}
                 </div>
             </div>
@@ -48,20 +41,20 @@
             </div>
 
             <div class="sidebar__nav--elem">
-                <li class="sidebar__nav--elem--group"><a href="{% url 'user_informatics' %}">Info</a></li>
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_informatics' %}">Info</a></li>
             </div>
             
             <div class="sidebar__nav--elem">
-                <li class="sidebar__nav--elem--group"><a href="{% url 'user_perms' %}">Roles and permissions</a></li>
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_perms' %}">Roles and permissions</a></li>
             </div>
 
             <div class="sidebar__nav--elem">
-                <li class="sidebar__nav--elem--group"><a href="{% url 'user_settings' %}">Settings</a></li>
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_settings' %}">Settings</a></li>
             </div>
             
             {% if reuest.user.is_superuser is True %}
                 <div class="sidebar__nav--elem">    
-                    <li class="sidebar__nav--elem--group"><a href="{% url 'admin' %}">Admin</a></li>
+                    <li class="sidebar__nav--elem__group"><a href="{% url 'admin' %}">Admin</a></li>
                 </div>
                 {% elif request.user.is_staff is True and request.user.is_superuser is False %}
 

@@ -1,1 +1,42 @@
 @use 'init';
+.main__head {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__head--logo__img {
+  border-radius: 25px;
+  border: 1.7px solid #ffbb00;
+}
+
+.main__head--header {
+  font-weight: 800;
+  text-shadow: 0 -1px 20px #22d02ca1;
+}
+
+.main__head--info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__head--info__role .tag {
+  background: #515151;
+  color: #0097e2;
+  font-weight: 800;
+}
+
+.sidebar {
+  width: fit-content;
+}
+
+.sidebar__nav--elem__group {
+  list-style-type: none;
+}

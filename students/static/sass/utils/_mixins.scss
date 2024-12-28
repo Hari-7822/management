@@ -1,4 +1,4 @@
-@mixin flex($dir, $wrap, $align-content, $justify-content, $align-items) {
+@mixin Flex($dir, $wrap, $align-content, $justify-content, $align-items) {
     display: flex;
     flex-direction: $dir;
     flex-wrap: $wrap;
@@ -7,7 +7,7 @@
     align-items: $align-items;
 }
 
-@mixin grid($dir, $align-content, $justify-content, $align-items, $justify-items) {
+@mixin Grid($dir, $align-content, $justify-content, $align-items, $justify-items) {
     display: grid;
     align-content: $align-content;
     align-items: $align-items;
@@ -15,3 +15,11 @@
     justify-items: $justify-items; 
 }
 
+@mixin RoleTag() {
+    .tag {
+        // @if()
+        background: #515151;
+        color: #0097e2;
+        font-weight: 800;
+    }
+}

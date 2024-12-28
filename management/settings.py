@@ -124,8 +124,8 @@ USE_TZ = True
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'assets/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
