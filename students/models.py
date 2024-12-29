@@ -37,6 +37,8 @@ class Student(models.Model):
     name = models.CharField(max_length=255)
     age = models.IntegerField()
     grade= models.CharField(max_length=6, choices=grade)
+    roll_number = models.CharField(max_length=7, unique=True, null=True,blank=True)
+
     father_name= models.CharField(max_length=255)
     father_age= models.IntegerField()
     father_occupation=models.CharField(max_length=255)
@@ -44,7 +46,7 @@ class Student(models.Model):
     mother_age= models.IntegerField()
     mother_occupation=models.CharField(max_length=255)
 
-    siblings = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    siblings = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     Created_At = models.DateTimeField(auto_now_add=True)
     Created_By = models.ForeignKey(user, related_name= "user", on_delete= models.CASCADE)

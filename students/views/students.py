@@ -23,7 +23,7 @@ def Add_Student(request):
             stu_name = form.cleaned_data['name']
             Student.objects.create(name=stu_name)
             print(stu_name)
-            messages.success(request, f"Student {stu_name} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
+            # messages.success(request, f"Student {stu_name} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
             return redirect("list/")
     else:
         form = StudentForm()

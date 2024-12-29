@@ -13,14 +13,25 @@ def user_created(sender, instance, created, **kwargs):
             print(f"{instance.username} has been updated")
 
 @receiver(post_save, sender=Student)
-def student_created(sende, instance, created, **kwargs):
+def student_created(sender, instance, created, **kwargs):
     if created:
         print(f"New Student - {instance.name} of {instance.grade} is created.")
     else:
         print(f"{instance.name} of {instance.grade} has been updated.")
 
+@receiver(post_delete, sender=user)
+def user_delete_signal(sender, instance, deleted, **kwargs):
+    if deleted:
+        print(f"{instance.username} has been deleted")
+    else:
+         pass
 
-
+@receiver(post_delete, sender=Student)
+def student_delete_signal(sender, instance, deleted, **kwargs):
+    if deleted:
+        print(f"{instance.name} of class {instance.grade} has been deleted")
+    else:
+        pass
 
 
 

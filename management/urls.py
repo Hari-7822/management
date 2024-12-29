@@ -24,7 +24,7 @@ urlpatterns = []
 
 
 admin_urls = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls, name='admin'),
 ]
 
 main=[

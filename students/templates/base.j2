@@ -25,7 +25,7 @@
                 
                 <div class="main__head--info">
                     {% if request.user.is_authenticated %}
-                        <p class="main__head--info__text">{{request.user.username}}</p><p class="main__head--info__role">{% if request.user.is_superuser is True %}Admin{% else %}Staff</p>{% endif %}{% else %}<p class="main__head--info__text-misc"></p> <p class="main__head--info__role">Anonymous</p>
+                        <p class="main__head--info__text">{{request.user.username}}</p><p class="main__head--info__role">{% if request.user.is_superuser is True %}<a class="tag" href="{% url 'admin:index' %}">Admin</a>{% else %}Staff</p>{% endif %}{% else %}<p class="main__head--info__text-misc"></p> <p class="main__head--info__role">Anonymous</p>
                     {% endif %}
                 </div>
             </div>
@@ -34,7 +34,7 @@
     {% endblock %}
     
     {% block sidebar %}
-    <div class = "sidebar">
+    <aside class = "sidebar">
         <ul class="sidebar__nav">
             <div class="sidebar__nav--elem">
                 <li class="sidebar__nav--elem__group"><a href="{% url 'index' %}">Home</a></li>
@@ -50,7 +50,7 @@
 
             <div class="sidebar__nav--elem">
                 <li class="sidebar__nav--elem__group"><a href="{% url 'user_settings' %}">Settings</a></li>
-            </div>
+            </aside>
             
             {% if reuest.user.is_superuser is True %}
                 <div class="sidebar__nav--elem">    
