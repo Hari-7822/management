@@ -1,9 +1,6 @@
-from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, views, decorators
-from .students import index
-from students.models import user, Student
-from students.forms import UserCreationForm, LoginForm, SignupForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from students.forms import LoginForm, SignupForm
 
 def user_signup(request):
     if request.method == 'POST':

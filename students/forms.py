@@ -19,10 +19,10 @@ class SignupForm(UserCreationForm):
         self.helper.add_input(Submit('submit', 'Create User'))
 
 
+
 class LoginForm(AuthenticationForm):
     class Meta:
         model = user
-        # fields = ['username', 'password']
 
 class StudentForm(forms.ModelForm):
     name=forms.CharField(max_length=255)
@@ -40,6 +40,3 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields=('__all__')
-
-    def save(self, *args, **kwargs):
-        self.Meta.model.objects.create(name=args.name, age=args.age, )

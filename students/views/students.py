@@ -21,6 +21,7 @@ def Add_Student(request):
         form=StudentForm(request.POST)
         if form.is_valid():
             stu_name = form.cleaned_data['name']
+            stu_ = form.cleaned_data['']
             Student.objects.create(name=stu_name)
             print(stu_name)
             # messages.success(request, f"Student {stu_name} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
