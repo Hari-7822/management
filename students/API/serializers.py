@@ -1,6 +1,6 @@
 #mixins
 
-from models import user, Student
+from students.models import user, Student
 # from .serializers import Modelserializer
 
 from rest_framework import mixins

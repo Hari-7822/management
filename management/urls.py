@@ -20,6 +20,8 @@ from students.views.auth import user_signup, user_login
 from students.views.students import *
 from students.views.user import *
 
+from students.API import views as api_view
+
 urlpatterns = []
 
 
@@ -47,8 +49,13 @@ students = [
 users= [
     path(r"user/<str:username>", user_view, name="user_view")
 ]
-temp = [
-    # endpoints
+
+user_list=api_view.UserViewset.as_view({'get':'list'})
+student_list=api_view.StudentViewset.as_view({'get':'list'})
+
+api = [
+    path('api/users/', user_list, name='Api_users'),
+    path('api/students/', student_list, name='Api_Students')
 ]
 
 urlpatterns.extend(admin_urls)
@@ -56,3 +63,4 @@ urlpatterns.extend(forms)
 urlpatterns.extend(students)
 urlpatterns.extend(main) 
 urlpatterns.extend(users) 
+urlpatterns.extend(api) 

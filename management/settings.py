@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'django_sass',
-    'psycopg2', 
+    'psycopg2',
+    'rest_framework', 
 
     "students",
 ]
