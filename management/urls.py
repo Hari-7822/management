@@ -52,10 +52,13 @@ users= [
 
 user_list=api_view.UserViewset.as_view({'get':'list'})
 student_list=api_view.StudentViewset.as_view({'get':'list'})
+group_list=api_view.GroupViewset.as_view({'get':'list'})
 
 api = [
+    path('api/', api_view.api_root, name='api_root'),
     path('api/users/', user_list, name='Api_users'),
-    path('api/students/', student_list, name='Api_Students')
+    path('api/students/', student_list, name='Api_students'),
+    path('api/groups/', group_list, name='Api_groups')
 ]
 
 urlpatterns.extend(admin_urls)

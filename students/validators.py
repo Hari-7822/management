@@ -20,3 +20,14 @@ def ClassValidator(age, grade):
 def EmailCompletionValidator(self, email):
     if "@gmail.com" not in email:
         return email.append("@gmail.com")
+    
+
+def IsAdmin(self, request):
+    if request.user.is_superuser and request.user.is_staff is True:
+        if request.user.is_active is True:
+            return True
+        return f"{request.user.username} is not active"
+    else:
+        return False
+    
+def 

@@ -1,9 +1,10 @@
 #mixins
+from django.contrib.auth.models import Group
 
 from students.models import user, Student
 # from .serializers import Modelserializer
 
-from rest_framework import mixins
+from rest_framework import mixins, serializers
 from rest_framework import generics
 
 class StudentList(mixins.ListModelMixin,
@@ -33,3 +34,9 @@ class StudentDetail(mixins.RetrieveModelMixin,
     
     def delete(self, req, *args, **kwargs):
         return self.destroy(req, *args, **kwargs)
+    
+
+class GroupSerializers(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields= ['url', 'name']
