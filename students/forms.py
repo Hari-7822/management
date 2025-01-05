@@ -24,6 +24,11 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = user
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Create User'))
+
 class StudentForm(forms.ModelForm):
     name=forms.CharField(max_length=255)
     age = forms.IntegerField()

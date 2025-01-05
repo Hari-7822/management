@@ -30,4 +30,13 @@ def IsAdmin(self, request):
     else:
         return False
     
-def 
+class Fee():
+    pass
+
+class Filters():
+    class __init__(self):
+        pass
+
+    def Sibling(self,):
+        # res= student.
+        pass
