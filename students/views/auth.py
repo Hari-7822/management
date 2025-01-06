@@ -8,7 +8,7 @@ def user_signup(request):
             if form.is_valid():
                 # name=form.cleaned_data['username'] 
                 form.save()
-                return redirect('login/')
+                return redirect('user_login')
     else:
         form = SignupForm()
     return render(request, 'forms/signup.j2', {'form': form})
@@ -23,7 +23,7 @@ def user_login(request):
             user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect('')
     else:
         form = LoginForm()
 

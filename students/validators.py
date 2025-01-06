@@ -29,7 +29,14 @@ def IsAdmin(self, request):
         return f"{request.user.username} is not active"
     else:
         return False
-    
+
+def mobile_no_validator(value): 
+  mobile = str(value) 
+  if len(mobile) != 10: 
+    raise ValidationError("Mobile Number Should 10 digit")     
+
+
+
 class Fee():
     pass
 
