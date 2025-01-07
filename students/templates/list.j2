@@ -1,45 +1,32 @@
 {% extends 'base.j2' %}
-
 {% block content %}
-
+{% load static %}
 {% if request.user.is_authenticated %}
 <ul>
-<h2>{{request.user.username}}</h2>
+<h2>{{ request.user.username }}</h2>
 <ul>
 {% for i in user %}
-    <li id=user-{{i.id}}><a href="{% url 'user_view' i.username %}" target="_blank">{{i.username}}</a></li>
+    <li id=user-{{ i.id }}><a href="{% url 'user_view' i.username %}" target="_blank">{{ i.username }}</a></li>
 {% endfor %}
+</ul>
 
 <div id='data-container'>
 </div>
-<script>
-$(document).ready(function() {
-        function fetchData() {
-            $.ajax({
-                url: 'http://127.0.0.1:8000/api/users/',
-                method: 'GET',
-                success: function(data) {
-                    let results = data;
-                    let html = '<ul>';
-                    results.forEach(function(item) {
-                        html += '<li> Name: ' + item.username + '</li>';
-                    });
-                    html += '</ul>';
-                    $('#data-container').html(html);
-                },
-                error: function(error) {
-                    // Handle the error
-                    $('#data-container').html('Error: ' + error.statusText);
-                }
-            });
-        }
 
-        fetchData();setInterval(fetchData, 5000);
-});
-</script>
-</ul>
-{% else %}
-    <p class="Error__meaagae">NOT A VALID USER</p>
 {% endif %}
-
+{% block script %}
+    {% include 'ajax.j2' %}
+    {{ fetchData(
+        api_url='/api/users',
+        data_block="""
+            let html = '<ul>';
+            results.forEach(function(item) {
+                html += '<li> Name: ' + item.name + '</li>';
+            });
+            html += '</ul>';
+            $('#data-container').html(html);
+        """,
+        target_block='data-container'
+    ) }}
+{% endblock %}
 {% endblock %}

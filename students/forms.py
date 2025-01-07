@@ -39,9 +39,19 @@ class StudentForm(forms.ModelForm):
     mother_name= forms.CharField(max_length=255)
     mother_age=forms.IntegerField()
     mother_occupation= forms.CharField(max_length=255)
+
     # siblings = forms.InlineForeignKeyField(name)
 
 
     class Meta:
         model = Student
         fields=('__all__')
+        exclude=['Created_By', 'Created_At']
+
+    def save(self, commit=True, user=None):
+        inst =super().save(commit=False)
+        if user:
+            inst.Created_By = user
+        if commit:
+            inst.save()
+        return inst

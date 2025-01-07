@@ -44,6 +44,7 @@ forms = [
 students = [
     path("student/add",Add_Student, name='add_student'),
     path("student/Edit/",Add_Student, name='add_student'),
+    path("student/list/",Student_View, name='student_list'),
 ]
 
 users= [
