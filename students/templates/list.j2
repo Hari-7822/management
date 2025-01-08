@@ -13,20 +13,34 @@
 <div id='data-container'>
 </div>
 
-{% endif %}
-{% block script %}
-    {% include 'ajax.j2' %}
-    {{ fetchData(
-        api_url='/api/users',
-        data_block="""
-            let html = '<ul>';
-            results.forEach(function(item) {
-                html += '<li> Name: ' + item.name + '</li>';
+ <script>
+
+        $(document).ready(function() {
+        function fetchData() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/users/',
+                method: 'GET',
+                success: function(data) {
+                    let results = data;
+                        let html = '<ul>';
+                        results.forEach(function(item) {
+                            html += '<li> Name: ' + item.username + '</li>';
+                        });
+                        html += '</ul>';
+                        $('#data-container').html(html);
+                },
+                error: function(error) {
+                    $('#data-container').html('Error: ' + error.statusText);
+                }
             });
-            html += '</ul>';
-            $('#data-container').html(html);
-        """,
-        target_block='data-container'
-    ) }}
-{% endblock %}
+        }
+
+        fetchData();setInterval(fetchData, 5000);
+        });
+    </script>
+
+
+{% endif %}
+
+
 {% endblock %}

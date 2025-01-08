@@ -30,7 +30,7 @@ class UserViewset(viewsets.ModelViewSet):
     
     @action(detail=True, methods=["DELETE"])
     def delete(self, request, pk):
-        user.objects.delete()
+        user.objects.delete(pk=pk)
         return Response({f'User, deleted'})
 
 class StudentViewset(viewsets.ModelViewSet):

@@ -44,8 +44,9 @@
                     html += '<li> Father age: ' + item.father_age + '</li>';
                     html += '<li> Father occupation: ' + item.father_occupation + '</li>';
                     html += '<li> Mother name: ' + item.mother_name + '</li>';
-                    html += '<li> Mother age: ' + item.mpther_age + '</li>';
-                    html += '<li> Mother occupation: ' + item.mpther_occupation + '</li>';
+                    html += '<li> Mother age: ' + item.mother_age + '</li>';
+                    html += '<li> Mother occupation: ' + item.mother_occupation + '</li>';
+                    html += '<li> Mother occupation: ' + {{user.objects.get(pk=item.Created_By)}} + '</li>';
                 });
                 html += '</ul>';
                 $('#data-container').html(html);

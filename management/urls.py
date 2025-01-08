@@ -61,7 +61,6 @@ api = [
     path('api/students/', student_list, name='Api_students'),
     path('api/groups/', group_list, name='Api_groups')
 ]
-
 urlpatterns.extend(admin_urls)
 urlpatterns.extend(forms)
 urlpatterns.extend(students)

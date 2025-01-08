@@ -10,6 +10,7 @@ def user_view(request, username):
 
 def delete_self(request):
     data = user.objects.delete(username=request.user.username)
+    print(request.path)
     return render(request, 'user_delete.j2', {'name': data})
 
 #Settings
