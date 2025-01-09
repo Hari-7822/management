@@ -55,3 +55,6 @@ class StudentForm(forms.ModelForm):
         if commit:
             inst.save()
         return inst
+
+class Add_Column(forms.Form):
+    query = f'ALTER TABLE '

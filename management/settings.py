@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     "students",
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -61,7 +62,9 @@ ROOT_URLCONF = 'management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
