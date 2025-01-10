@@ -1,5 +1,6 @@
 /venv/
 */__pycache__/*
+/migrations
 
 ./students/static/fonts/Fonts.zip
 /refs/
@@ -7,5 +8,5 @@
 *.log
 *.env
 
-fonts.txt
-How-to.txt
+./fonts.txt
+./How-to.txt

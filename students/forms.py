@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Layout, Fieldset, Submit
 
 
 from .models import Student, user, grade
@@ -16,8 +16,9 @@ class SignupForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Create User'))
-
+        self.helper.layout = Layout(
+            Fieldset('Password').css_class('fa fa-eye')
+        )
 
 
 class LoginForm(AuthenticationForm):
