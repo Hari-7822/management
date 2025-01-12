@@ -8,7 +8,7 @@ def user_signup(request):
             if form.is_valid():
                 # name=form.cleaned_data['username'] 
                 form.save()
-                return redirect('user_login')
+                return redirect('user/login')
     else:
         form = SignupForm()
     return render(request, 'forms/signup.j2', {'form': form})
@@ -28,3 +28,7 @@ def user_login(request):
         form = LoginForm()
 
     return render(request, './forms/login.j2', {'form': form})
+
+
+def delete_user(request):
+    pass

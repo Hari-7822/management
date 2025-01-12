@@ -51,6 +51,7 @@ class Student(models.Model):
     Created_At = models.DateTimeField(auto_now_add=True)
     Created_By = models.ForeignKey(user, related_name= "user", on_delete= models.CASCADE)
 
+    
     def __str__(self):
         return f'Student - {self.name} of class {self.grade}'
 
@@ -58,3 +59,8 @@ class Student(models.Model):
 class preferences(models.Model):
     user=models.ForeignKey(user, on_delete=models.CASCADE)
     theme=models.CharField(max_length=122)
+
+
+
+class Bin():
+    pass

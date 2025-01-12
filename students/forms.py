@@ -17,7 +17,7 @@ class SignupForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Fieldset('Password').css_class('fa fa-eye')
+            # Fieldset('password').css_class('fa fa-eye')   
         )
 
 
@@ -59,3 +59,7 @@ class StudentForm(forms.ModelForm):
 
 class Add_Column(forms.Form):
     query = f'ALTER TABLE '
+
+
+class DeleteUser(forms.Form):
+    confirmation = forms.BooleanField(label="Remove User")

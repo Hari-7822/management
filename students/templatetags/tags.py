@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django import template     
 
-from ..models import user, student
+from ..models import user
 
 register = template.Library() 
   
