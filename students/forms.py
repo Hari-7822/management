@@ -61,5 +61,8 @@ class Add_Column(forms.Form):
     query = f'ALTER TABLE '
 
 
-class DeleteUser(forms.Form):
+class UserDeletionForm(forms.Form):
     confirmation = forms.BooleanField(label="Remove User")
+
+    def __str__(self):
+        print(f"{self.user.username} has been deleted")

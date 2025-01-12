@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from students.models import user
+from ..forms import UserDeletionForm
 
 #user views
 def user_view(request, username):

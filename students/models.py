@@ -62,5 +62,8 @@ class preferences(models.Model):
 
 
 
-class Bin():
+class UserBin(user):
+    pass
+
+class StudentBin(Student):
     pass
