@@ -146,3 +146,6 @@ LOGIN_URL = "user/login/"
 LOGIN_REDIRECT_URL = "/"
 
 # APPEND_SLASH= True 
+
+#E-mail config
+# EMAIL_BACKEND='django.core.mail.backend.smtp.EmailBackend'

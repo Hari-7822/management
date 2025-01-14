@@ -12,7 +12,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView, logout_then_login
 from django.urls import path, include
 from django.contrib.auth import urls
 
@@ -38,7 +38,8 @@ main=[
 
 forms = [
     path('user/login/', LoginView.as_view(template_name='./forms/login.j2'), name="user_login"),
-    path("user/add_user/", user_signup,name="user_register")
+    path("user/add_user/", user_signup,name="user_register"),
+    path("user/logout/", LogoutView.as_view(), name="user_logout")
 ]
 
 students = [

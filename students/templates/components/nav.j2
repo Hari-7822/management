@@ -1,0 +1,29 @@
+    {% block sidebar %}
+    <aside class = "sidebar">
+        <ul class="sidebar__nav">
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem__group"><a href="{% url 'index' %}">Home</a></li>
+            </div>
+
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_informatics' %}">Info</a></li>
+            </div>
+            
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_perms' %}">Roles and permissions</a></li>
+            </div>
+
+            <div class="sidebar__nav--elem">
+                <li class="sidebar__nav--elem__group"><a href="{% url 'user_settings' %}">Settings</a></li>
+            </aside>
+            
+            {% if reuest.user.is_superuser is True %}
+                <div class="sidebar__nav--elem">    
+                    <li class="sidebar__nav--elem__group"><a href="{% url 'admin' %}">Admin</a></li>
+                </div>
+                {% elif request.user.is_staff is True and request.user.is_superuser is False %}
+
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock %}

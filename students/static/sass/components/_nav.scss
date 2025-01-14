@@ -1,0 +1,20 @@
+@use '../init';
+
+.sidebar{
+
+    &__nav{
+
+        &--elem{
+            &__group{
+
+                &>a{
+                    color: #fac535b8;
+                    &:visited{
+                        color: #6035fab8;
+                    }
+                }
+            }
+
+        }
+    }
+}

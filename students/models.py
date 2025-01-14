@@ -67,3 +67,6 @@ class UserBin(user):
 
 class StudentBin(Student):
     pass
+
+class UserDeleteLog(user):
+    pass

@@ -25,7 +25,7 @@
                         let html = '<ul>';
                         results.forEach(function(item) {
                             if (item.username) {
-                                html += '<li> Name: <a href =`users/${item.username}`' + item.username + '</a></li>';
+                                html += '<li> Name: <a href="user/' + item.username + '" target="_blank" title="' + item.username + '-profile">' + item.username + '</a></li>';
                             } else {
                                 html += '<li> Name: Unknown</li>';
                             }

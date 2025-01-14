@@ -1,5 +1,6 @@
 @import 'utils/mixins';
-@use 'init';
+@import 'init';
+@import './components/nav';
 
 
 .main {

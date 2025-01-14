@@ -6,7 +6,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 
 
-from .models import Student, user, grade
+from .models import Student, user, UserDeleteLog, grade
 
 class SignupForm(UserCreationForm):
     class Meta:
@@ -63,6 +63,10 @@ class Add_Column(forms.Form):
 
 class UserDeletionForm(forms.Form):
     confirmation = forms.BooleanField(label="Remove User")
+    deleted_by = forms
+    
+    class Meta:
+        model= UserDeleteLog
 
     def __str__(self):
         print(f"{self.user.username} has been deleted")
