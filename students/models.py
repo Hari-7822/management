@@ -31,6 +31,8 @@ grade = [
 
 class user(AbstractUser):
     def __str__(self):
+        return f'{self.username}'
+    def __repr__(self):    
         return f'User - {self.username}'
 
 class Student(models.Model):

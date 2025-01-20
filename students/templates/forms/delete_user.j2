@@ -11,7 +11,7 @@
         <h2 class="form__header"></h2>
         <form method="POST" class="form__form container form-group">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ form | crispy }}
             <div class="form__footer">
                 <button class="form __footer--btn btn btn-submit" type="submit">Login</button>
                 <p class="form__footer--text">Don't have account <a class="form__footer--link" href="{% url 'user_register' %}">SignUp</a></p>

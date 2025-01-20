@@ -28,7 +28,7 @@
                 
                 <div class="main__head--info">
                     {% if request.user.is_authenticated %}
-                        <p class="main__head--info__text">{{request.user.username}}</p><p class="main__head--info__role">{% if request.user.is_superuser is True %}<a class="tag" href="{% url 'admin:index' %}">Admin</a>{% else %}Staff</p>{% endif %}{% else %}<p class="main__head--info__text-misc"></p> <p class="main__head--info__role">Anonymous</p>
+                        <p class="main__head--info__text">{{request.user.username}}</p><p class="main__head--info__role">{% if request.user.is_superuser is True %}<a class="tag" href="{% url 'admin:index' %}" target="_blank">Admin</a>{% else %}Staff</p>{% endif %}{% else %}<p class="main__head--info__text-misc"></p> <p class="main__head--info__role">Anonymous</p>
                     {% endif %}
                 </div>
             </div>

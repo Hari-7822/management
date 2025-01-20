@@ -63,8 +63,7 @@ class Add_Column(forms.Form):
 
 class UserDeletionForm(forms.Form):
     confirmation = forms.BooleanField(label="Remove User")
-    deleted_by = forms
-    
+        
     class Meta:
         model= UserDeleteLog
 

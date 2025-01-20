@@ -1,0 +1,12 @@
+{% extends '../base.j2' %}
+
+{% block content %}
+    <title>User Detail</title>
+    <h1>{{ user.username }}</h1>
+    <p>Email:<a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Role: {% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</p>
+    {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
+
+{% endblock %}
