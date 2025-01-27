@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="theme-color" content="#f7cac9">
 
     <title>{% block title %}Management{% endblock %}</title>
     {% block statics %}
@@ -22,7 +23,7 @@
         <div class="main">
             <div class="main__head">
                 <div class="main__head--logo">
-                    <img class="main__head--logo__img" src='https://unsplash.it/50/50'>
+                    <a href="{% url 'user_view' request.user.username %}"><img class="main__head--logo__img" src='https://unsplash.it/50/50'></a>
                 </div>
                 <h3 class="main__head--header">Title</h3>
                 

@@ -9,5 +9,4 @@
 *.log
 *.env
 
-./fonts.txt
-./How-to.txt
+*.txt

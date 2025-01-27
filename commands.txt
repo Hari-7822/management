@@ -2,3 +2,4 @@ pip list
 django shell
 Db ops
 Cipher -> Decipher
+python manage.py inspectdb > models.py

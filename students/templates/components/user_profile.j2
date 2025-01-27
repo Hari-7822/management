@@ -1,5 +1,5 @@
 {% extends '../base.j2' %}
-
+{% block title %}{{user.username}}'s profile {% endblock %}
 {% block content %}
     <title>User Detail</title>
     <h1>{{ user.username }}</h1>
@@ -8,5 +8,14 @@
     <p>Last Name: {{ user.last_name }}</p>
     <p>Role: {% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</p>
     {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
+
+    {% if request.user.username == user.username %}
+        <a href=''>Edit profile</a>
+        <a href=''>Change Password</a>
+    {% elif request.user.username != user.username and request.user.is_superuser = True and request.user.is_staff = True %}
+        <a href=''>Edit {{user.username}}'s profile</a>
+    {% else %}
+
+    {% endif %}
 
 {% endblock %}
