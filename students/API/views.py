@@ -25,13 +25,19 @@ class UserViewset(viewsets.ModelViewSet):
     @action(detail=True, methods=['POST', 'PUT'])
     def CreateOrUpdate(self, request, pk=None, *args):
         if request.methods=="POST":
-            user.objects.create()
+            user.objects.update_or_create()
         return Response({f'User Created'})
     
     @action(detail=True, methods=["DELETE"])
     def delete(self, request, pk):
-        user.objects.delete(pk=pk)
-        return Response({f'User, deleted'})
+        if request.method=="DELETE":
+            user.objects.delete(pk=pk)
+        return Response({f'User deleted'})
+    
+    @action(detail=True, methods=["PATCH"])
+    def patch(self, req, pk):
+        if req.method == "PATCH":
+            user.objects.update(pk=pk)
 
 class StudentViewset(viewsets.ModelViewSet):
     queryset=Student.objects.all()

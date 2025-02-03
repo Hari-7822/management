@@ -2,7 +2,7 @@
 from django.contrib.auth.models import Group
 
 from students.models import user, Student
-# from .serializers import Modelserializer
+from .modelSerializer import UserSerializer, StudentSerializer
 
 from rest_framework import mixins, serializers
 from rest_framework import generics

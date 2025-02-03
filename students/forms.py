@@ -9,9 +9,10 @@ from crispy_forms.layout import Layout, Fieldset, Submit
 from .models import Student, user, UserDeleteLog, grade
 
 class SignupForm(UserCreationForm):
+    Image=forms.ImageField()
     class Meta:
         model = user
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
+        fields = ['first_name', 'last_name', 'Image', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,6 +41,7 @@ class StudentForm(forms.ModelForm):
     mother_name= forms.CharField(max_length=255)
     mother_age=forms.IntegerField()
     mother_occupation= forms.CharField(max_length=255)
+    image= forms.ImageField()
 
     # siblings = forms.InlineForeignKeyField(name)
 

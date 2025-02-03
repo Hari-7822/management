@@ -16,7 +16,7 @@ start python manage.py runserver
 
 
 
-@REM   < "server_output.log" (  
+@REM   < (  
 
 @REM     set /a line_count=0
 

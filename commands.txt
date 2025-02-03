@@ -3,3 +3,6 @@ django shell
 Db ops
 Cipher -> Decipher
 python manage.py inspectdb > models.py
+
+Session Auth(using POST, PATCH, PUT, DELETE is recommended), Token Auth for Js clients
+

@@ -8,7 +8,7 @@ from students.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=user
-        fields='__all__'
+        fields='__all__' 
 
 class GroupSerializers(serializers.ModelSerializer):
     class Meta:

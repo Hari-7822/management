@@ -30,6 +30,7 @@ grade = [
 
 
 class user(AbstractUser):
+    image=models.ImageField(upload_to="static/assets/")
     def __str__(self):
         return f'{self.username}'
     def __repr__(self):    
@@ -39,6 +40,7 @@ class Student(models.Model):
     name = models.CharField(max_length=255)
     age = models.IntegerField()
     grade= models.CharField(max_length=6, choices=grade)
+    image=models.ImageField(upload_to="static/assets/")
     roll_number = models.CharField(max_length=7, unique=True, null=True,blank=True)
 
     father_name= models.CharField(max_length=255)

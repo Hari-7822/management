@@ -1,8 +1,8 @@
 {% extends './base.j2' %}
+{% block title %} {{ user.username }}'s Profile {% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
-    <title>User Detail</title>
     <h1>{{ user.username }}</h1>
     <p>Email:<a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
     <p>First Name: {{ user.first_name }}</p>
