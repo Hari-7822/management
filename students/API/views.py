@@ -1,10 +1,11 @@
 from django.contrib.auth.models import Group
 
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
 from rest_framework.reverse import reverse
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin, ListModelMixin
+from rest_framework.generics import CreateAPIView
 
 from .modelSerializer import UserSerializer, StudentSerializer, GroupSerializers
 from students.models import user, Student
@@ -49,6 +50,13 @@ class GroupViewset(viewsets.ModelViewSet):
     serializer_class = GroupSerializers
     permission_classes=[permissions.IsAuthenticated]
 
+class UserRegistrationViewset(CreateAPIView):
+    queryset=user.objects.all()
+    serializer_class=UserSerializer
+    permission_classes=[permissions.IsAuthenticated]
 
 
-
+class StudentRegistrationViewSet(CreateAPIView):
+    queryset=Student.objects.all()
+    serializer_class=StudentSerializer
+    permission_classes=[permissions.IsAuthenticated]

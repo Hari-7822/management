@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.conf.global_settings import MEDIA_URL
+
 from datetime import datetime
 
 
@@ -27,9 +29,12 @@ grade = [
 
 ]
 
+def directory(instance, file):
+    return f"{MEDIA_URL}/{instance.user.username}/{file}"
 
 
 class user(AbstractUser):
+
     image=models.ImageField(upload_to="static/assets/")
     def __str__(self):
         return f'{self.username}'
@@ -40,7 +45,7 @@ class Student(models.Model):
     name = models.CharField(max_length=255)
     age = models.IntegerField()
     grade= models.CharField(max_length=6, choices=grade)
-    image=models.ImageField(upload_to="static/assets/")
+    image=models.ImageField(upload_to=directory)
     roll_number = models.CharField(max_length=7, unique=True, null=True,blank=True)
 
     father_name= models.CharField(max_length=255)
@@ -70,6 +75,7 @@ class Fee(models.Model):
 class preferences(models.Model):
     user=models.ForeignKey(user, on_delete=models.CASCADE)
     theme=models.CharField(max_length=122)
+    
 
 
 

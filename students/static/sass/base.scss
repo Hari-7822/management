@@ -9,7 +9,8 @@
         &--logo{
             // @include flex(row-reverse, wrap, flex-start, flex-start, space-between);
             &__img {
-                border-radius: 25px;
+                height: 60px;
+                border-radius: 75px;
                 border: 1.7px solid #ffbb00;
             }
         }
@@ -40,7 +41,7 @@
     &__nav {
         &--elem {
             &__group{
-                list-style-type: none;                
+                list-style-type: none;            
             }
         }
     }

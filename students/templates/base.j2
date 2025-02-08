@@ -15,7 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>   
 
-        <link rel="stylesheet" href="{% static '' %}" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% endblock %}
 </head>
 <body>
@@ -23,7 +23,7 @@
         <div class="main">
             <div class="main__head">
                 <div class="main__head--logo">
-                    <a href="{% url 'user_view' request.user.username %}"><img class="main__head--logo__img" src='https://unsplash.it/50/50'></a>
+                    <a href="{% url 'user_view' request.user.username %}"><img class="main__head--logo__img" alt="{{request.user.username}}'s picture" src='{{ request.user.image }}'></a>
                 </div>
                 <h3 class="main__head--header">Title</h3>
                 

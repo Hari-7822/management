@@ -1,6 +1,7 @@
 from pathlib import Path
 from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 import environ
+import os
 
 env=environ.Env()
 env.read_env()
@@ -133,7 +134,10 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/assets/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

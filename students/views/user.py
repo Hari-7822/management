@@ -31,5 +31,5 @@ def perms(request):
     return "Info"
 
 @login_required(login_url="user/login")
-def settings(request):
+def user_settings(request):
     return "Info"

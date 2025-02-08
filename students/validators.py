@@ -17,9 +17,9 @@ def ClassValidator(age, grade):
 
 
 
-def EmailCompletionValidator(self, email):
-    if "@gmail.com" not in email:
-        return email.append("@gmail.com")
+def EmailCompletionValidator(self, email, formatter):
+        return email+formatter if formatter not in email else email
+    
     
 
 def IsAdmin(self, request):

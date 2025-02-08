@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+@use '../init';
 .sidebar__nav--elem__group > a {
   color: #fac535b8;
 }
@@ -22,7 +23,8 @@
 }
 
 .main__head--logo__img {
-  border-radius: 25px;
+  height: 60px;
+  border-radius: 75px;
   border: 1.7px solid #ffbb00;
 }
 
