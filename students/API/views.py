@@ -60,3 +60,14 @@ class StudentRegistrationViewSet(CreateAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
+
+class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset=user.objects.all()
+    serializer_class=UserSerializer
+    permission_classes=[permissions.IsAuthenticated]
+
+class StudentCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Student.objects.all()
+    serializer_class=StudentSerializer
+    permission_classes=[permissions.IsAuthenticated]
+
