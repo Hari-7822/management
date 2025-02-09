@@ -25,6 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def update(self, instance, field):
+        instance=user()
         for i,j in field.items():
             if i == "password":
                 instance.set_password(j)

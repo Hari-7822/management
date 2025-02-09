@@ -1,2 +1,2 @@
 server: 
-	source venv/bin/activate
+	bash ./Scripts/bash/git.sh

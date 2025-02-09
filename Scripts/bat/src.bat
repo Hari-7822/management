@@ -1,5 +1,6 @@
 @echo off
 
+cd ../../
 timeout /T 2
 echo Activating the Venv. . . 
 call venv\Scripts\activate

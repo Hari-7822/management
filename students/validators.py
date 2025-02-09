@@ -41,7 +41,7 @@ class Fee():
     pass
 
 class Filters():
-    class __init__(self):
+    class __init__():
         pass
 
     def Sibling(self,):
