@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.conf.global_settings import MEDIA_URL
+from django.conf.global_settings import MEDIA_ROOT
 
 from datetime import datetime
 
@@ -30,7 +30,7 @@ grade = [
 ]
 
 def directory(instance, file):
-    return f"{MEDIA_URL}/{instance.user.username}/{file}"
+    return f"{MEDIA_ROOT}/{instance.user.username or instance.student.name}/{file}"
 
 
 class user(AbstractUser):

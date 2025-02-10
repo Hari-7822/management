@@ -6,9 +6,10 @@ from rest_framework.decorators import action, api_view
 from rest_framework.reverse import reverse
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin, ListModelMixin
 from rest_framework.generics import CreateAPIView
+from rest_framework import status
 
 from .modelSerializer import UserSerializer, StudentSerializer, GroupSerializers
-from students.models import user, Student
+from students.models import user, Student, UserBin, StudentBin
 
 @api_view(["GET"])
 def api_root(req, format=None):
@@ -61,10 +62,16 @@ class StudentRegistrationViewSet(CreateAPIView):
     serializer_class=StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
 
-class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
     queryset=user.objects.all()
     serializer_class=UserSerializer
     permission_classes=[permissions.IsAuthenticated]
+    lookup_field = 'pk'
+    
+    def perform_destroy(self, instance) :
+        super().perform_destroy(instance)
+        return Response(f"{instance.user.username} has been deleted")
+
 
 class StudentCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()

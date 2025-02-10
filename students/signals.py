@@ -2,7 +2,7 @@ from django.db.models.signals import post_save, post_delete, pre_save, pre_delet
 from django.dispatch import receiver
 from django.apps import apps
 
-from .models import user, Student
+from .models import user, Student, UserBin, StudentBin
 
 #user db signals
 @receiver(post_save, sender=user)
@@ -19,12 +19,12 @@ def student_created(sender, instance, created, **kwargs):
     else:
         print(f"{instance.name} of {instance.grade} has been updated.")
 
-@receiver(post_delete, sender=user)
-def user_delete_signal(sender, instance, deleted, **kwargs):
-    if deleted:
-        print(f"{instance.username} has been deleted")
-    else:
-         pass
+# @receiver(post_delete, sender=user)
+# def user_delete_signal(sender, instance, deleted, **kwargs):
+#     if deleted:
+#         print(f"{instance.username} has been deleted")
+#     else:
+#          pass
 
 @receiver(post_delete, sender=Student)
 def student_delete_signal(sender, instance, deleted, **kwargs):
@@ -32,7 +32,6 @@ def student_delete_signal(sender, instance, deleted, **kwargs):
         print(f"{instance.name} of class {instance.grade} has been deleted")
     else:
         pass
-
 
 
 
