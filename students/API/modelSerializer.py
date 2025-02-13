@@ -13,16 +13,16 @@ class UserSerializer(serializers.ModelSerializer):
     def list(self, instance):
         pass
     
-    def create(self, instance, *args, **kwargs):
-        data=user()
+    # def create(self, instance, *args, **kwargs):
+    #     data=user()
 
-        for field, val in instance.items():
-            if field == 'password':
-                data.set_password(val)
-            else:
-                setattr(data, field, val)
-        data.save()
-        return data
+    #     for field, val in instance.items():
+    #         if field == 'password':
+    #             data.set_password(val)
+    #         else:
+    #             setattr(data, field, val)
+    #     data.save()
+    #     return data
 
     def update(self, instance, field):
         instance=user()

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.conf.global_settings import MEDIA_ROOT
+from django.conf.global_settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL, MEDIA_URL
 
 from datetime import datetime
 
@@ -35,7 +35,7 @@ def directory(instance, file):
 
 class user(AbstractUser):
 
-    image=models.ImageField(upload_to="static/assets/")
+    image=models.ImageField(upload_to=f"{STATIC_ROOT}/assets/")
     def __str__(self):
         return f'{self.username}'
     def __repr__(self):    

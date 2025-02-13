@@ -69,6 +69,7 @@ class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
     lookup_field = 'pk'
     
     def perform_destroy(self, instance) :
+        UserBin.objects.create(**{field.name: getattr(instance, field.name) for field in instance._meta.fields})
         super().perform_destroy(instance)
         return Response(f"{instance.user.username} has been deleted")
 
