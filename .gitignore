@@ -1,18 +1,30 @@
 /venv/
 /linux-venv/
+
 */__pycache__/*
+**/__pycache__/*
+
 /migrations/
 /**/migrations/
 
 /students/static/fonts/Fonts.zip
 /refs/
 
-*.log
-*.env
+**/fonts/
 
+*.env
+*.log
 *.txt
 
-/bootstrap.min.css
+
+
 
 *.otf
 *.ttf
+
+#Images
+*.png
+*.jpg
+*.jpeg
+*.heif
+*.gif
