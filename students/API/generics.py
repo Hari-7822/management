@@ -17,6 +17,11 @@ class UserProfileView(generics.RetrieveAPIView):
         serializer=self.get_serializer(instance)
         return Response(serializer.data)
 
+    def post(self, serializer, *args, **kwargs):
+        instance=serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+
     def delete(self, req, *args, **kwargs):
         instance=self.get_object()
         instance.delete()

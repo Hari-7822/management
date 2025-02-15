@@ -7,7 +7,7 @@ from crispy_forms.layout import Layout, Fieldset, Submit
 
 
 from .models import Student, user, UserDeleteLog, grade
-
+from .API.modelSerializer import StudentSerializer
 class SignupForm(UserCreationForm):
     Image=forms.ImageField()
     class Meta:
@@ -66,9 +66,19 @@ class StudentForm(forms.ModelForm):
         if commit:
             inst.save()
         return inst
+    
+    def is_valid(self):
+        valid = super(StudentForm, self).is_valid()
+        if not valid:
+            return False
+
+        serializer = StudentSerializer(data=self.cleaned_data)
+        return serializer.is_valid() 
+
 
 class Add_Column(forms.Form):
-    query = f'ALTER TABLE '
+    q=forms.CharField(max_length=255)
+    query = f'ALTER TABLE {q}'
 
 
 class UserDeletionForm(forms.Form):

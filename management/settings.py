@@ -153,3 +153,33 @@ LOGIN_REDIRECT_URL = "/"
 
 #E-mail config
 # EMAIL_BACKEND='django.core.mail.backend.smtp.EmailBackend'
+
+
+#Caches
+
+CACHES ={
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+
+
+
+
+
+REST_FRAMEWORK = { 
+  
+    'DEFAULT_CACHE_BACKEND': 'default',
+    # 'DEFAULT_AUTHENTICATION_CLASSES': { 
+    #     'rest_framework.authentication.BasicAuthentication', 
+    # },
+    # 'DEFAULT_THROTTLE_CLASSES': { 
+    #     'rest_framework.throttling.AnonRateThrottle', 
+    #     'rest_framework.throttling.UserRateThrottle'
+    # }, 
+    # 'DEFAULT_THROTTLE_RATES': { 
+    #     'anon': '2/day', 
+    #     'user': '5/day'
+    # }, 
+}

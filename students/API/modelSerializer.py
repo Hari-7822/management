@@ -13,16 +13,29 @@ class UserSerializer(serializers.ModelSerializer):
     def list(self, instance):
         pass
     
-    # def create(self, instance, *args, **kwargs):
-    #     data=user()
+    def create(self, validated_data):
+        print("Validated Data:", validated_data)  # Debug statement
 
-    #     for field, val in instance.items():
-    #         if field == 'password':
-    #             data.set_password(val)
-    #         else:
-    #             setattr(data, field, val)
-    #     data.save()
-    #     return data
+        password = validated_data.pop('password', None)
+        print("Password:", password)  # Debug statement
+        
+        instance = self.Meta.model(**validated_data)
+        print("Instance:", instance)  # Debug statement
+        
+        if password is not None:
+            instance.set_password(password)  # Use set_password() for the user password
+        
+        instance.save()
+        
+        # Set groups after saving the instance
+        groups_data = self.initial_data.get('groups')
+        print("Groups Data:", groups_data)  # Debug statement
+        
+        if groups_data:
+            instance.groups.set(groups_data)
+        
+        return instance
+
 
     def update(self, instance, field):
         instance=user()

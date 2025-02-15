@@ -54,7 +54,7 @@ class GroupViewset(viewsets.ModelViewSet):
 class UserRegistrationViewset(CreateAPIView):
     queryset=user.objects.all()
     serializer_class=UserSerializer
-    permission_classes=[permissions.IsAuthenticated]
+    permission_classes=[permissions.IsAuthenticated, permissions.IsAdminUser]
 
 
 class StudentRegistrationViewSet(CreateAPIView):

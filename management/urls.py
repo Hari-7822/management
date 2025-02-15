@@ -12,6 +12,7 @@ from students.API import views as api_view
 
 urlpatterns = [] + static(st.MEDIA_URL, document_root=st.MEDIA_ROOT)
 
+handler404="students.views.defaults.NotFound"
 
 admin_urls = [
     path('admin', admin.site.urls, name='admin'),
