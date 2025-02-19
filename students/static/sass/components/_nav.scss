@@ -1,20 +1,22 @@
 @use '../init';
 
 .sidebar{
+    
+    display: contents;
 
     &__nav{
-
+       
+        @include Flex(row, wrap, normal, center, center);
+        gap: 10vw;
+        
         &--elem{
-            &__group{
-
-                &>a{
-                    color: #fac535b8;
-                    &:hover{
-                        color: #6035fab8;
-                    }
+            list-style: none;
+            &>a{
+                color: #3594fab8;
+                &:hover{
+                    color: #235182b8;
                 }
             }
-
         }
     }
 }

@@ -5,7 +5,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 
-
 from .models import Student, user, UserDeleteLog, grade
 from .API.modelSerializer import StudentSerializer
 class SignupForm(UserCreationForm):

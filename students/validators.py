@@ -47,3 +47,7 @@ class Filters():
     def Sibling(self,):
         # res= student.
         pass
+
+
+def CheckPassword(password):
+    return password

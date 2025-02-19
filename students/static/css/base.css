@@ -5,12 +5,30 @@
 }
 
 @use '../init';
-.sidebar__nav--elem__group > a {
-  color: #fac535b8;
+.sidebar {
+  display: contents;
 }
 
-.sidebar__nav--elem__group > a:hover {
-  color: #6035fab8;
+.sidebar__nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: normal;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+}
+
+.sidebar__nav--elem {
+  list-style: none;
+}
+
+.sidebar__nav--elem > a {
+  color: #3594fab8;
+}
+
+.sidebar__nav--elem > a:hover {
+  color: #235182b8;
 }
 
 .main__head {
