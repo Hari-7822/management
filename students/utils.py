@@ -35,3 +35,5 @@ class Logs:
         pass
 
 
+def Fields(model):
+    return model._meta.fields

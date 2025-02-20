@@ -43,3 +43,13 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
         fields='__all__'
+    
+    def get(self, req, *args, **kwargs):
+        return self.retrieve(req, *args, **kwargs)
+    
+    def put(self, req, *args, **kwargs):
+        return self.update(req, *args, **kwargs)
+    
+    def delete(self, req, *args, **kwargs):
+        return self.destroy(req, *args, **kwargs)
+    

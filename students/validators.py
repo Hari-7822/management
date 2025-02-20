@@ -51,3 +51,10 @@ class Filters():
 
 def CheckPassword(password):
     return password
+
+def NameSeparator(self, name:str, instance):
+    for field in instance.data:
+        if field.lower() == 'firstname' :
+            pass 
+    return name.strip(" ")
+print(NameSeparator(""))

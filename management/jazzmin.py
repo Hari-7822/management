@@ -1,10 +1,10 @@
 JAZZMIN_SETTINGS ={
 
-    "site_title": "Library Admin",
+    "site_title": "Management",
 
-    "site_header": "Library",
+    "site_header": "Management",
 
-    "site_brand": "Library",
+    "site_brand": "Raja National Matric hr. Secondary School",
 
     "site_logo": "books/img/logo.png",
 

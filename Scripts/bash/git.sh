@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 read -sp "Enter commit message :  " msg
 echo
 git add .

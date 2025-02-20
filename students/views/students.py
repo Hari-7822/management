@@ -13,8 +13,7 @@ from datetime import datetime
 
 @login_required(login_url="user/login/")
 def index(request):
-    list = user.objects.all()
-    return render(request, 'list.j2', {'user': list})
+    return render(request, 'list.j2')
 
 @login_required(login_url="user/login")
 # @permission_required()

@@ -6,9 +6,7 @@
 <ul>
 <h2>{{ request.user.username }}</h2>
 <ul>
-{% for i in user %}
-    <li id=user-{{ i.id }}><a href="{% url 'user_view' i.username %}" target="_blank">{{ i.username }}</a></li>
-{% endfor %}
+
 </ul>
 {% Count %}
 <div id='data-container'>
