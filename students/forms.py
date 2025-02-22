@@ -5,13 +5,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 
-from .models import Student, user, UserDeleteLog, grade
-from .API.modelSerializer import StudentSerializer
+from .models import Student, user, UserDeleteLog, preferences, grade
+from .API.modelSerializer import StudentSerializer, UserSerializer
+
 class SignupForm(UserCreationForm):
     Image=forms.ImageField()
     class Meta:
         model = user
-        fields = ['first_name', 'last_name', 'Image', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
+        exclude=["image", "groups", "user_permissions", "date_joined", "last_login"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,6 +31,14 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'Create User'))
+    
+    def is_valid(self):
+        valid = super(LoginForm, self).is_valid()
+        if not valid:
+            return False
+
+        serializer = UserSerializer(data=self.cleaned_data)
+        return serializer.is_valid() 
 
 class StudentForm(forms.ModelForm):
     name=forms.CharField(max_length=255)
@@ -88,3 +98,9 @@ class UserDeletionForm(forms.Form):
 
     def __str__(self):
         print(f"{self.user.username} has been deleted")
+
+class PreferenceForm(forms.Form):
+
+    class Meta:
+        model=preferences
+        fields=('__all__')

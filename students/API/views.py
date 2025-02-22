@@ -1,5 +1,10 @@
 from django.contrib.auth.models import Group
 
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework import status
+
+
 from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
@@ -8,7 +13,7 @@ from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyM
 from rest_framework.generics import CreateAPIView
 from rest_framework import status
 
-from .modelSerializer import UserSerializer, StudentSerializer, GroupSerializers
+from .modelSerializer import UserSerializer, UserRegistrationSerializer, StudentSerializer, GroupSerializers
 from students.models import user, Student, UserBin, StudentBin
 
 @api_view(["GET"])
@@ -26,10 +31,15 @@ class UserViewset(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['POST', 'PUT'])
     def CreateOrUpdate(self, request, pk=None, *args):
-        if request.methods=="POST":
+        if request.method=="POST":
             user.objects.update_or_create()
         return Response({f'User Created'})
     
+    @action(detail=True, methods=['POST', 'PUT'])
+    def create(self, request, pk=None, *args):
+        if request.method=="POST":
+            user.objects.create()
+            
     @action(detail=True, methods=["DELETE"])
     def delete(self, request, pk):
         if request.method=="DELETE":
@@ -53,7 +63,7 @@ class GroupViewset(viewsets.ModelViewSet):
 
 class UserRegistrationViewset(CreateAPIView):
     queryset=user.objects.all()
-    serializer_class=UserSerializer
+    serializer_class=UserRegistrationSerializer
     permission_classes=[permissions.IsAuthenticated, permissions.IsAdminUser]
 
 
@@ -74,8 +84,12 @@ class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
         return Response(f"{instance.user.username} has been deleted")
 
 
-class StudentCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+class StudentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
 
+class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset=user.objects.all()
+    serializer_class=UserSerializer
+    permission_classes=[permissions.IsAuthenticated]

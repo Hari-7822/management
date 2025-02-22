@@ -48,13 +48,19 @@ group_list=api_view.GroupViewset.as_view({'get':'list'})
 
 
 get_routes=[
+    #user
     path('api/users/', user_list, name='Api_users'),
+    path('api/user/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name='user_profile'),
+    
+    #students
     path('api/students/', student_list, name='Api_students'),
+    path('api/student/<int:rollno>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
+    
     path('api/groups/', group_list, name='Api_groups')
 ]
 
 post_routes=[
-    path('api/users/register/', api_view.UserRegistrationViewset.as_view(), name="Api_user_registration"),
+    path('api/user/register/', api_view.UserRegistrationViewset.as_view(), name="Api_user_registration"),
     path('api/students/add', student_list, name='Api_students_Registration'),
 ]
 
@@ -62,7 +68,7 @@ patch_routes=[]
 
 delete_routes=[
     path('api/user/delete/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name="Api_user_deletion"),
-    path('api/user/delete/<int:rollno>', api_view.StudentCreateRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
+    path('api/user/delete/<int:rollno>', api_view.StudentRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
 ]
 
 
