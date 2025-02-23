@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from students.models import *
 
 
-class   UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=user
         fields='__all__' 

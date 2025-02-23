@@ -1,2 +1,2 @@
 server: 
-	bash ./Scripts/bash/git.sh
+	./Scripts/bash/git.sh
