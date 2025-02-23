@@ -6,6 +6,7 @@
 
 @use '../init';
 .sidebar {
+  padding: 10px 0px 0px 0px;
   display: contents;
 }
 

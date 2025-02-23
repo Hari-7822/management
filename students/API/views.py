@@ -88,6 +88,7 @@ class StudentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
+    lookup_field='roll_number'
 
 class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=user.objects.all()

@@ -16,6 +16,9 @@ meta/
 *.env
 *.log
 *.txt
+*.txt.un~
+*.txt~
+
 
 
 

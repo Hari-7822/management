@@ -54,7 +54,7 @@ get_routes=[
     
     #students
     path('api/students/', student_list, name='Api_students'),
-    path('api/student/<int:rollno>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
+    path('api/student/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
     
     path('api/groups/', group_list, name='Api_groups')
 ]
@@ -68,7 +68,7 @@ patch_routes=[]
 
 delete_routes=[
     path('api/user/delete/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name="Api_user_deletion"),
-    path('api/user/delete/<int:rollno>', api_view.StudentRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
+    path('api/user/delete/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
 ]
 
 

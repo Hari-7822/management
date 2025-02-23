@@ -8,14 +8,13 @@
             <li class="sidebar__nav--elem"><a href="{% url 'user_perms' %}">Roles and permissions</a></li>
 
             <li class="sidebar__nav--elem"><a href="{% url 'user_settings' %}">Settings</a></li>
-            </aside>
-            
             {% if reuest.user.is_superuser is True %}
-                
-                    <li class="sidebar__nav--elem__group"><a href="{% url 'admin' %}">Admin</a></li>
-                {% elif request.user.is_staff is True and request.user.is_superuser is False %}
+                <li class="sidebar__nav--elem__group"><a href="{% url 'admin' %}">Admin</a></li>
+            {% elif request.user.is_staff is True and request.user.is_superuser is False %}
 
             {% endif %}
+            </aside>
+            
         </ul>
     </div>
     {% endblock %}
