@@ -5,8 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
 
-from .models import Student, user, UserDeleteLog, preferences, grade
-from .API.modelSerializer import StudentSerializer, UserSerializer
+from .models import Student, grade
+from Users.models import user
+from API.modelSerializer import StudentSerializer, UserSerializer
 
 class SignupForm(UserCreationForm):
     Image=forms.ImageField()
@@ -88,19 +89,3 @@ class StudentForm(forms.ModelForm):
 class Add_Column(forms.Form):
     q=forms.CharField(max_length=255)
     query = f'ALTER TABLE {q}'
-
-
-class UserDeletionForm(forms.Form):
-    confirmation = forms.BooleanField(label="Remove User")
-        
-    class Meta:
-        model= UserDeleteLog
-
-    def __str__(self):
-        print(f"{self.user.username} has been deleted")
-
-class PreferenceForm(forms.Form):
-
-    class Meta:
-        model=preferences
-        fields=('__all__')

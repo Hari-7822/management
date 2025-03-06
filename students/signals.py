@@ -2,16 +2,12 @@ from django.db.models.signals import post_save, post_delete, pre_save, pre_delet
 from django.dispatch import receiver
 from django.apps import apps
 
-from .models import user, Student, UserBin, StudentBin
+from .models import user, Student, StudentBin
 
+#user db signals
 @receiver(pre_delete, sender=user)
 def UserPreDelete(sender, instance, **kwargs):
     print(f"{instance.user.username} yet to be deleted")
-
-
-
-
-#user db signals
 
 @receiver(post_save, sender=user)
 def user_created(sender, instance, created, **kwargs):

@@ -4,11 +4,11 @@ from django.urls import path, include
 from django.conf import settings as st
 from django.conf.urls.static import static
 
-from students.views.auth import user_signup, user_login
+from Users.views.auth import user_signup, user_login
 from students.views.students import *
-from students.views.user import *
+from Users.views.main import *
 
-from students.API import views as api_view
+from API import views as api_view
 
 urlpatterns = [] + static(st.MEDIA_URL, document_root=st.MEDIA_ROOT)
 

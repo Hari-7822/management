@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseNotAllowed
 
 from ..models import user, Student
+from Users.models import user
 from students.forms import LoginForm, SignupForm
 
 def user_signup(request):

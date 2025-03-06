@@ -9,7 +9,7 @@
 <div class="container form">
     
         <h2 class="form__header"></h2>
-        <form method="POST" class="form__form container form-group">
+        <form method="POST" class="form__form container form-group" action="">
             {% csrf_token %}
             {{ form | crispy }}
             <div class="form__footer">
