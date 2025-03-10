@@ -7,7 +7,7 @@ from Users.forms import LoginForm, SignupForm
 
 def user_signup(request):
     if request.method == 'POST':
-            form = SignupForm(request.POST)
+            form = SignupForm(request.POST) 
             if form.is_valid():
                 form.save()
                 return redirect('user_login')

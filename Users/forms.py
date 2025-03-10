@@ -9,11 +9,11 @@ from .models import user, UserDeleteLog, preferences
 from API.modelSerializer import UserSerializer
 
 class SignupForm(UserCreationForm):
-    Image=forms.ImageField()
+    Image=forms.ImageField(allow_empty_file=True, required=False)
     class Meta:
         model = user
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'is_superuser','is_staff']
-        exclude=["image", "groups", "user_permissions", "date_joined", "last_login"]
+        exclude = ['image', 'groups', 'user_permissions', 'date_joined', 'last_login']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#f7cac9">
 
     <title>{% block title %}Management {% endblock %}</title>
-    {% block statics %}
         <link rel="stylesheet" type='text/css' href="{% static 'libs/bootstrap.min.css' %}"/>
         <link rel="stylesheet" type='text/css' href="{% static 'css/base.css' %}"/>
 
@@ -16,7 +15,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>   
 
         <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    {% endblock %}
+    {% block statics %}{% endblock %}
 </head>
 <body>
 

@@ -1,21 +1,30 @@
 {% extends '../base.j2' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
 {% block title %}{{user.username}}'s profile {% endblock %}
+{% block statics %} <link rel='stylesheet' href={% static "./css/components/user_profile.css"%} /> {% endblock %}
 {% block content %}
-    <title>User Detail</title>
-    <h1>{{ user.username }}</h1>
-    <p>Email:<a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Role: {% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</p>
-    {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
 
-    {% if request.user.username == user.username %}
-        <a href=''>Edit profile</a>
-        <a href=''>Change Password</a>
-    {% elif request.user.username != user.username and request.user.is_superuser = True and request.user.is_staff = True %}
-        <a href=''>Edit {{user.username}}'s profile</a>
-    {% else %}
+    <div class="main container">
+        <img src="{{user.image}}" alt="{{user.username}}'s profile" />
+        <div class="main__content">
+            <h1 class="main__content--name">{{ user.username }}</h1>
+            <p class="main__content--email"><a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
+            <p class="main__content--fname">{{ user.first_name }}</p>
+            <p class="main__content--lname">{{ user.last_name }}</p>
+            <p class="main__content--role tag">{% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</p>
+            {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
 
-    {% endif %}
+            {% if request.user.username == user.username %}
+                <a href=''>Edit profile</a>
+                <a href=''>Change Password</a>
+            {% elif request.user.username != user.username and request.user.is_superuser == True and request.user.is_staff == True %}
+                <a href=''>Edit {{user.username}}'s profile</a>
+            {% else %}
+
+            {% endif %}
+        </div>    
+    </div>
 
 {% endblock %}

@@ -32,6 +32,13 @@
   color: #235182b8;
 }
 
+.sidebar__nav--elem__group--role {
+  background: #515151;
+  color: #0097e2;
+  font-weight: 800;
+  width: fit-content;
+}
+
 .main__head {
   display: flex;
   flex-direction: row-reverse;
@@ -61,10 +68,11 @@
   align-items: center;
 }
 
-.main__head--info__role .tag {
+.main__head--info__role {
   background: #515151;
   color: #0097e2;
   font-weight: 800;
+  width: fit-content;
 }
 
 .sidebar {

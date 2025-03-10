@@ -9,7 +9,7 @@
 
             <li class="sidebar__nav--elem"><a href="{% url 'user_settings' %}">Page-3</a></li>
             {% if request.user.is_superuser is True %}
-                <li class="sidebar__nav--elem__group"><a href="{% url 'admin:index' %}">Admin</a></li>
+                <li class="sidebar__nav--elem__group"><a class="sidebar__nav--elem__group--role" href="{% url 'admin:index' %}">Admin</a></li>
             {% elif request.user.is_staff is True and request.user.is_superuser is False %}
 
             {% endif %}
