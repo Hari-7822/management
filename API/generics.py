@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from .modelSerializer import UserSerializer, StudentSerializer
 
-from ..models import user, Student
+from students.models import user, Student
 
 
 class UserProfileView(generics.RetrieveAPIView):

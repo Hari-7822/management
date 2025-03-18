@@ -1,10 +1,11 @@
-@mixin Flex($dir, $wrap, $align-content, $justify-content, $align-items) {
+@mixin Flex($dir, $wrap, $align-content, $justify-content, $align-items, $gap) {
     display: flex;
     flex-direction: $dir;
     flex-wrap: $wrap;
     align-content: $align-content;
     justify-content: $justify-content; 
     align-items: $align-items;
+    gap: $gap
 }
 
 @mixin Grid($dir, $align-content, $justify-content, $align-items, $justify-items) {

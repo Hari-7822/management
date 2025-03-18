@@ -6,7 +6,7 @@
 .main {
     &__head{
         @include Flex(row-reverse, wrap, flex-start, space-between, center);
-        &--logo{
+        &--logo{    
             // @include flex(row-reverse, wrap, flex-start, flex-start, space-between);
             &__img {
                 height: 60px;

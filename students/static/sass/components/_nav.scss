@@ -7,7 +7,7 @@
 
     &__nav{
        
-        @include Flex(row, wrap, normal, center, center);
+        @include Flex(row, wrap, normal, center, center, 0px);
         gap: 10vw;
         
         &--elem{
