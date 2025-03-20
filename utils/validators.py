@@ -22,11 +22,11 @@ def EmailCompletionValidator(self, email, formatter):
     
     
 
-def IsAdmin(self, request):
+def IsAdmin(self, request) -> bool:
     if request.user.is_superuser and request.user.is_staff is True:
         if request.user.is_active is True:
             return True
-        return f"{request.user.username} is not active"
+        return False
     else:
         return False
 

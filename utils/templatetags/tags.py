@@ -12,3 +12,7 @@ def Count():
 @register.simple_tag
 def InTime(request):
       return datetime.now() - request.user.last_login
+
+@register.filter
+def get_fields(obj):
+    return [(field.name, field.value_to_string(obj)) for field in obj._meta.fields]

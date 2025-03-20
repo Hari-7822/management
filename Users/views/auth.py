@@ -1,22 +1,23 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login, update_session_auth_hash 
 from django.http import HttpResponseNotAllowed
+from django.contrib import messages
 
 from Users.models import user
-from Users.forms import LoginForm, SignupForm
+from Users.forms import LoginForm, SignupForm, ChangePasswordForm
 
-def user_signup(request):
+def UserSignup(request):
     if request.method == 'POST':
             form = SignupForm(request.POST) 
             if form.is_valid():
                 form.save()
-                return redirect('user_login')
+                return redirect('UserLogin')
     else:
         form = SignupForm()
     return render(request, 'forms/signup.j2', {'form': form})
 
 
-def user_login(request):
+def UserLogin(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)  
         if form.is_valid():
@@ -32,7 +33,7 @@ def user_login(request):
     return render(request, './forms/login.j2', {'form': form})
 
 
-def delete_user(request, target_user):
+def DeleteUser(request, target_user):
     if request.method == "DELETE":
         if target_user == request.user:
             target=user.objects.get(username=request.user.username)
@@ -42,3 +43,16 @@ def delete_user(request, target_user):
             target.delete()
     else:
         return HttpResponseNotAllowed(f"{request.method} method not allowed")
+    
+
+
+def ChangePassword(request):
+    if request.method == "PATCH":
+        form = ChangePasswordForm()
+        if form.is_valid():
+            inst= form.save()
+            update_session_auth_hash(request, inst)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')

@@ -5,7 +5,7 @@
 
 .main {
     &__head{
-        @include Flex(row-reverse, wrap, flex-start, space-between, center);
+        @include Flex(row-reverse, wrap, flex-start, space-between, center, 0px);
         &--logo{    
             // @include flex(row-reverse, wrap, flex-start, flex-start, space-between);
             &__img {
@@ -22,7 +22,7 @@
         }
 
         &--info{
-            @include Flex(row, nowrap, center, space-between, center);
+            @include Flex(row, nowrap, center, space-between, center, 0px);
             &__text{
                 
             }

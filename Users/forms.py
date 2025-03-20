@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.hashers import make_password
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
@@ -55,3 +56,20 @@ class PreferenceForm(forms.Form):
     class Meta:
         model=preferences
         fields=('__all__')
+
+
+class ChangePasswordForm(forms.Form):
+    
+    current_password=forms.CharField(label='current_password',widget=forms.PasswordInput(attrs={'placeholder':'Your Current Password'}))
+    new_password=forms.CharField(label='new_password',widget=forms.PasswordInput(attrs={'placeholder':'Your New Password'}))
+    new_password_confirmation=forms.CharField(label='new_password_confirmation',widget=forms.PasswordInput(attrs={'placeholder':'Your New Password Again'}))
+
+    class Meta:
+        model=user
+        fields=('username', 'password')
+
+    def is_valid(self, request, instance):
+        Current= True if make_password(self.current_password) == instance.user.password else False
+        New= True if self.new_password == self.new_password_confirmation else False
+
+        return 

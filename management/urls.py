@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth.views import LoginView, LogoutView, logout_then_login
+from django.contrib.auth.views import LoginView, LogoutView, logout_then_login, PasswordChangeView
 from django.urls import path, include
 from django.conf import settings as st
 from django.conf.urls.static import static
 
-from Users.views.auth import user_signup, user_login
+from Users.views.auth import UserSignup, UserLogin
 from students.views.students import *
 from Users.views.main import *
 
@@ -27,14 +27,15 @@ main=[
 
 forms = [
     path('user/login/', LoginView.as_view(template_name='./forms/login.j2'), name="user_login"),
-    path("user/add_user/", user_signup,name="user_register"),
-    path("user/logout/", LogoutView.as_view(), name="user_logout")
+    path("user/add_user/", UserSignup, name="user_register"),
+    path("user/logout/", LogoutView.as_view(), name="user_logout"),
+    path("user/change_password/", PasswordChangeView.as_view(), name="change_user_passord"),
 ]
 
 students = [
-    path("student/add",Add_Student, name='add_student'),
-    path("student/Edit/",Add_Student, name='add_student'),
-    path("student/list/",Student_View, name='student_list'),
+    path("student/add", Add_Student, name='add_student'),
+    path("student/Edit/", Add_Student, name='add_student'),
+    path("student/list/", Student_View, name='student_list'),
 ]
 
 users= [
