@@ -72,4 +72,4 @@ class ChangePasswordForm(forms.Form):
         Current= True if make_password(self.current_password) == instance.user.password else False
         New= True if self.new_password == self.new_password_confirmation else False
 
-        return 
+        return True

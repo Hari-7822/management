@@ -50,31 +50,31 @@ group_list=api_view.GroupViewset.as_view({'get':'list'})
 
 get_routes=[
     #user
-    path('api/users/', user_list, name='Api_users'),
-    path('api/user/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name='user_profile'),
+    path(r'api/users/', user_list, name='Api_users'),
+    path(r'api/user/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name='user_profile'),
     
     #students
-    path('api/students/', student_list, name='Api_students'),
-    path('api/student/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
+    path(r'api/students/', student_list, name='Api_students'),
+    path(r'api/student/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
     
-    path('api/groups/', group_list, name='Api_groups')
+    path(r'api/groups/', group_list, name='Api_groups')
 ]
 
 post_routes=[
-    path('api/user/register/', api_view.UserRegistrationViewset.as_view(), name="Api_user_registration"),
-    path('api/students/add', student_list, name='Api_students_Registration'),
+    path(r'api/user/register/', api_view.UserRegistrationViewset.as_view(), name="Api_user_registration"),
+    path(r'api/students/add/', api_view.StudentRegistrationViewSet.as_view(), name='Api_students_Registration'),
 ]
 
 patch_routes=[]
 
 delete_routes=[
-    path('api/user/delete/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name="Api_user_deletion"),
-    path('api/user/delete/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
+    path(r'api/user/delete/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name="Api_user_deletion"),
+    path(r'api/user/delete/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name="Api_Student_deletion")
 ]
 
 
 api = [
-    path('api/', api_view.api_root, name='api_root'),    
+    path(r'api/', api_view.api_root, name='api_root'),    
 ]
 
 api.extend(get_routes)

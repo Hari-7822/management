@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
-read -sp "Enter commit message :  " msg
+commit_message = $(wc -l < $1)
+# read -sp "Enter commit message :  " msg
 echo
 git add .
-git commit -m $msg
+git commit -m $1
 git pull origin 
 git push

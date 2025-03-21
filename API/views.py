@@ -17,6 +17,8 @@ from .modelSerializer import UserSerializer, UserRegistrationSerializer, Student
 from students.models import user, Student, StudentBin
 from Users.models import UserBin
 
+from datetime import datetime
+
 @api_view(["GET"])
 def api_root(req, format=None):
     return Response({
@@ -57,6 +59,11 @@ class StudentViewset(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(Created_By=self.request.user, Created_At= datetime.now())
+        return super().perform_create(serializer)
+
+
 class GroupViewset(viewsets.ModelViewSet):
     queryset=Group.objects.all()
     serializer_class = GroupSerializers
@@ -72,6 +79,10 @@ class StudentRegistrationViewSet(CreateAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(Created_By=self.request.user, Created_At= datetime.now())
+        return super().perform_create(serializer)
 
 class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
     queryset=user.objects.all()
