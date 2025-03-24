@@ -41,7 +41,8 @@ class GroupSerializers(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
-        fields='__all__'
+        
+        exclude=["Created_By"]
     
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

@@ -4,28 +4,23 @@
     border-radius:12.7px; box-shadow: 0px 0xp 2px 0.7px #5a5a5a46;
     &__content{
         &--head{
+            @include Flex(row, wrap, normal, flex-start, center, 1vw );
             &__duo{
+                display: contents;
                 &--name{
-        
+                    
+                } &--role{
+                    @include RoleTag();
                 }
-
             }
-        }
-        
-        &--fullname{
+        } &--fullname{
 
-        }
-        &--email{
+        } &--email{
 
-        }
-        &--fname{
+        } &--fname{
 
-        }
-        &--lname{
+        } &--lname{
 
-        }
-        &--role{
-            @include RoleTag();
         }
     }
 

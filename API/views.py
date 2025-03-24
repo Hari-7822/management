@@ -50,14 +50,19 @@ class UserViewset(viewsets.ModelViewSet):
         return Response({f'User deleted'})
     
     @action(detail=True, methods=["PATCH"])
-    def patch(self, req, pk):
+    def patch(self, req, pk, id):
         if req.method == "PATCH":
-            user.objects.update(pk=pk)
+            try:
+                target=user.objects.get(id=id)
+                user.objects.update(pk=pk)
+            except:
+                return Response({"error": "Data not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class StudentViewset(viewsets.ModelViewSet):
     queryset=Student.objects.all()
     serializer_class = StudentSerializer
     permission_classes=[permissions.IsAuthenticated]
+
 
     def perform_create(self, serializer):
         serializer.save(Created_By=self.request.user, Created_At= datetime.now())

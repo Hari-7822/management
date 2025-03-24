@@ -7,7 +7,7 @@ from ..models import user
 
 #user views
 @login_required(login_url="login/")
-def user_view(request, username, instance):
+def user_view(request, username):
     data = get_object_or_404(user, username=username)
     
     if request.method == "DELETE":      
@@ -32,7 +32,7 @@ def info(request):
 
 @login_required(login_url="user/login")
 def perms(request):
-    return "Info"
+    return ""
 
 @login_required(login_url="user/login")
 def user_settings(request):

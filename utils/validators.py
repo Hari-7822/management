@@ -20,7 +20,7 @@ def ClassValidator(age, grade):
 def EmailCompletionValidator(self, email, formatter):
         return email+formatter if formatter not in email else email
     
-    
+     
 
 def IsAdmin(self, request) -> bool:
     if request.user.is_superuser and request.user.is_staff is True:

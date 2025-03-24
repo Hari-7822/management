@@ -3,7 +3,21 @@
   box-shadow: 0px 0xp 2px 0.7px #5a5a5a46;
 }
 
-.main__content--role {
+.main__content--head {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: normal;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1vw;
+}
+
+.main__content--head__duo {
+  display: contents;
+}
+
+.main__content--head__duo--role {
   background: #515151;
   color: #0097e2;
   font-weight: 800;
