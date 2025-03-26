@@ -12,7 +12,7 @@
     <div class="main container">
         <div class="main__content">
             <div class="main__content--head">
-                <img class="main__content--head__image" src="{{user.image}}" alt="{{user.username}}'s profile" />
+                <img class="main__content--head__image" src="{{STATIC_ROOT}}/assets/{{user.image}}" alt="{{user.username}}'s profile" />
                 <div class="main__content--head__duo">
                     <h1 class="main__content--head__duo--name">{{ user.username }}</h1> <span class="main__content--head__duo--role tag">{% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</span>
                 </div>

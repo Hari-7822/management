@@ -65,7 +65,9 @@ post_routes=[
     path(r'api/students/add/', api_view.StudentRegistrationViewSet.as_view(), name='Api_students_Registration'),
 ]
 
-patch_routes=[]
+patch_routes=[
+    path(r'api/user/<int:pk>/edit', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name='Api_user_update')
+]
 
 delete_routes=[
     path(r'api/user/delete/<int:pk>', api_view.UserCreateRetrieveUpdateDestroy.as_view(), name="Api_user_deletion"),

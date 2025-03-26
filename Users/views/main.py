@@ -18,7 +18,7 @@ def user_view(request, username):
         form = UserDeletionForm() 
         
         
-    return render(request, 'components/user_profile.j2', {'user': data, 'DeleteUserform': form})
+    return render(request, 'components/user_profile.j2', {'user': data, 'image':data.image, 'DeleteUserform': form})
 
 def delete_self(request):
     data = user.objects.delete(username=request.user.username)

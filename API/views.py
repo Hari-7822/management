@@ -32,12 +32,29 @@ class UserViewset(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes=[permissions.IsAuthenticated]
 
-    @action(detail=True, methods=['POST', 'PUT'])
+    def get_obj(slef, pk):
+        try:
+            return user.objects.get(pk=pk)
+        except:
+            return False
+
+    @action(detail=True, methods=['POST', 'PATCH'])
     def CreateOrUpdate(self, request, pk=None, *args):
         if request.method=="POST":
             user.objects.update_or_create()
-        return Response({f'User Created'})
-    
+            return Response({f'User Created'})
+        elif request.method=="PATCH":
+            try:
+                # target=user.objects.get(id=id)
+                obj=self.serializer_class
+                obj.update(pk=pk, data=request.DATA)
+                if obj.is_valid():
+                    obj.save()
+                    return JsonResponse(code=201, data=obj.data)
+                return JsonResponse(code=400, data="wrong parameters")
+            except:
+                return Response({"error": "Data not found"}, status=status.HTTP_404_NOT_FOUND)
+
     @action(detail=True, methods=['POST', 'PUT'])
     def create(self, request, pk=None, *args):
         if request.method=="POST":
@@ -49,14 +66,6 @@ class UserViewset(viewsets.ModelViewSet):
             user.objects.delete(pk=pk)
         return Response({f'User deleted'})
     
-    @action(detail=True, methods=["PATCH"])
-    def patch(self, req, pk, id):
-        if req.method == "PATCH":
-            try:
-                target=user.objects.get(id=id)
-                user.objects.update(pk=pk)
-            except:
-                return Response({"error": "Data not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class StudentViewset(viewsets.ModelViewSet):
     queryset=Student.objects.all()
@@ -111,3 +120,6 @@ class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=user.objects.all()
     serializer_class=UserSerializer
     permission_classes=[permissions.IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)

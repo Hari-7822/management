@@ -88,4 +88,4 @@ class StudentForm(forms.ModelForm):
 
 class Add_Column(forms.Form):
     q=forms.CharField(max_length=255)
-    query = f'ALTER TABLE {q}'
+    query = f'ALTER TABLE {q}'  

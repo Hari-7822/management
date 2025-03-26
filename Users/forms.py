@@ -10,6 +10,7 @@ from .models import user, UserDeleteLog, preferences
 from API.modelSerializer import UserSerializer
 
 class SignupForm(UserCreationForm):
+    username=forms.CharField(max_length=50)
     Image=forms.ImageField(allow_empty_file=True, required=False)
     class Meta:
         model = user

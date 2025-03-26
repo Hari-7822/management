@@ -6,7 +6,7 @@ JAZZMIN_SETTINGS ={
 
     "site_brand": "Raja National Matric hr. Secondary School",
 
-    "site_logo": "books/img/logo.png",
+    # "site_logo": "books/img/logo.png",
 
     "login_logo": None,
 
@@ -44,17 +44,6 @@ JAZZMIN_SETTINGS ={
 
     "hide_models": [],
 
-    "order_with_respect_to": ["auth", "books", "books.author", "books.book"],
-
-    "custom_links": {
-        "books": [{
-            "name": "Make Messages", 
-            "url": "make_messages", 
-            "icon": "fas fa-comments",
-            "permissions": ["books.view_book"]
-        }]
-    },
-
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
@@ -76,7 +65,7 @@ JAZZMIN_SETTINGS ={
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": False,
+    "navbar_small_text": True,
     "footer_small_text": False,
     "body_small_text": False,
     "brand_small_text": False,
@@ -86,14 +75,14 @@ JAZZMIN_UI_TWEAKS = {
     "no_navbar_border": False,
     "navbar_fixed": False,
     "layout_boxed": False,
-    "footer_fixed": False,
+    "footer_fixed": True,
     "sidebar_fixed": False,
     "sidebar": "sidebar-dark-info",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": False,
     "sidebar_nav_compact_style": False,
-    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_legacy_style": True,
     "sidebar_nav_flat_style": False,
     "theme": "cyborg",
     "dark_mode_theme": None,
