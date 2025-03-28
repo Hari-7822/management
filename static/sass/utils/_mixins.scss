@@ -1,0 +1,44 @@
+@mixin Flex($dir, $wrap, $align-content, $justify-content, $align-items, $gap) {
+    display: flex;
+    flex-direction: $dir;
+    flex-wrap: $wrap;
+    align-content: $align-content;
+    justify-content: $justify-content; 
+    align-items: $align-items;
+    gap: $gap
+}
+
+@mixin Grid($dir, $align-content, $justify-content, $align-items, $justify-items) {
+    display: grid;
+    align-content: $align-content;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    justify-items: $justify-items; 
+}
+
+// @mixin UserStatus(){
+//     .#{name} {
+//         if(.#{name}=="online"){
+
+//             .icon{
+//                 background-color: #00e541;
+//             }
+//         }
+//     }
+// }
+
+@mixin RoleTag() {
+        // @if()
+        background: #515151;
+        color: #0097e2;
+        font-weight: 800;
+        width: fit-content;
+}
+
+// @mixin RoleTag($cl, $bg, $wt, $wd) {
+//         // @if()
+//         background: $bg;
+//         color: $cl;
+//         font-weight: $wt;
+//         width: $wd;
+// }

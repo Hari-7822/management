@@ -1,0 +1,30 @@
+{% extends 'base.j2' %}
+
+{% block content %}
+
+<ul>
+{% if request.user.is_authenticated %}
+<h2>{{request.user.username}}</h2>
+
+        <p>{{meta}}</p>
+{% for i in meta %}
+    <ul>
+    </ul>
+{% endfor %}
+{% endif %}
+        <table>
+         <th>{% header %}</th>
+        
+         <td>
+             {% for i in data %}
+
+             {% endfor %}
+         </td>
+     </table>
+</ul>
+
+<form>
+    {% csrf_token %}
+    
+</form>
+{% endblock %}

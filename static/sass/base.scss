@@ -1,0 +1,47 @@
+@import './utils/mixins';
+@import 'init';
+@import './components/nav';
+
+
+.main {
+    &__head{
+        @include Flex(row-reverse, wrap, flex-start, space-between, center, 0px);
+        &--logo{    
+            // @include flex(row-reverse, wrap, flex-start, flex-start, space-between);
+            &__img {
+                height: 60px;
+                border-radius: 75px;
+                border: 1.7px solid #ffbb00;
+            }
+        }
+
+        &--header{
+            font-weight: 800;
+            // text-shadow: 0 -1px 20px #ffbb00;
+            text-shadow: 0 -1px 20px #22d02ca1;
+        }
+
+        &--info{
+            @include Flex(row, nowrap, center, space-between, center, 0px);
+            &__text{
+                
+            }
+            
+            &__role {
+                @include RoleTag();
+            }
+        }
+    }
+}
+
+.sidebar{
+    width: fit-content;
+    
+    &__nav {
+        &--elem {
+            &__group{
+                list-style-type: none;            
+            }
+        }
+    }
+}

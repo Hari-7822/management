@@ -1,0 +1,68 @@
+{% extends 'base.j2' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+</head>
+
+{% block content %}
+<body>
+    # <p>Name: {{ student.name }}</p>
+    # <p>Age: {{ student.age }}</p>
+    # <p>Grade: {{ student.grade }}</p>
+    # <p>Roll number: {{ student.roll_number }}</p>
+    # <p>Father Name: {{ student.father_name }}</p>
+    # <p>Father age: {{ student.father_age }}</p>
+    # <p>Father occupation: {{ student.father_occupation }}</p>
+    # <p>Mother name: {{ student.mother_name }}</p>
+    # <p>Mother age: {{ student.mother_age }}</p>
+    # <p>Mother occupation: {{ student.mother_occupation }}</p>
+    # <p>Created At: {{ student.Created_At }}</p>
+
+    # {% if user.is_superuser == True and user.is_staff == True %}<p>Created By: {{student.Created_By}}{% else %}{% endif %}</p>
+
+<div id="data-container"> </div>
+</body>
+
+        <script>
+
+      $(document).ready(function() {
+        function fetchData() {
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/students/',
+            method: 'GET',
+            success: function(data) {
+                let results = data;
+                let html = '<ul>';
+                results.forEach(function(item) {
+                    html += '<li> Name: ' + item.name + '</li>';
+                    html += '<li> Age: ' + item.age + '</li>';
+                    html += '<li> grade: ' + item.grade + '</li>';
+                    html += '<li> Roll number: ' + item.roll_number + '</li>';
+                    html += '<li> Father name: ' + item.father_name + '</li>';
+                    html += '<li> Father age: ' + item.father_age + '</li>';
+                    html += '<li> Father occupation: ' + item.father_occupation + '</li>';
+                    html += '<li> Mother name: ' + item.mother_name + '</li>';
+                    html += '<li> Mother age: ' + item.mother_age + '</li>';
+                    html += '<li> Mother occupation: ' + item.mother_occupation + '</li>';
+                    html += '<li> Mother occupation: ' + {{user.objects.get(pk=item.Created_By)}} + '</li>';
+                });
+                html += '</ul>';
+                $('#data-container').html(html);
+            },
+            error: function(error) {
+                $('#data-container').html('Error: ' + error.statusText);
+            }
+        });
+    }
+
+    fetchData();
+    setInterval(fetchData, 5000);
+});
+
+    </script>
+
+</html>
+
+{% endblock %}

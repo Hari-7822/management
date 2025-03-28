@@ -19,10 +19,6 @@ meta/
 *.txt.un~
 *.txt~
 
-
-
-
-
 *.otf
 *.ttf
 
@@ -32,3 +28,6 @@ meta/
 *.jpeg
 *.heif
 *.gif
+*.webp
+*.tiff
+*.bmp

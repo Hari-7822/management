@@ -1,0 +1,48 @@
+{% extends 'base.j2' %}
+{% block content %}
+{% load static %}
+{% load tags %}
+{% if request.user.is_authenticated %}
+<ul>
+<h2>{{ request.user.username }}</h2>
+<ul>
+
+</ul>
+{% Count %}
+<div id='data-container'>
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            function fetchData() {
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/users/',
+                    method: 'GET',
+                    success: function(data) {
+                        let results = data;
+                        let html = '<ul>';
+                        results.forEach(function(item) {
+                            if (item.username) {
+                                html += '<li> Name: <a href="user/' + item.username + '" target="_blank" title="' + item.username + '-profile">' + item.username + '</a></li>';
+                            } else {
+                                html += '<li> Name: Unknown</li>';
+                            }
+                        });
+                        html += '</ul>';
+                        $('#data-container').html(html);
+                    },
+                    error: function(error) {
+                        $('#data-container').html('Error: ' + error.statusText);
+                    }
+                });
+            }
+
+            fetchData();
+            setInterval(fetchData, 5000);
+        });
+    </script>
+
+{% endif %}
+
+
+{% endblock %}
