@@ -12,14 +12,14 @@
     <div class="main container">
         <div class="main__content">
             <div class="main__content--head">
-                <img class="main__content--head__image" src="{{MEDIA_URL}}/{{user.image}}" alt="{{user.username}}'s profile" />
+                <img class="main__content--head__image" src="/media/{{user.image}}" alt="{{user.username}}'s profile" />
                 <div class="main__content--head__duo">
                     <h1 class="main__content--head__duo--name">{{ user.username }}</h1> <span class="main__content--head__duo--role tag">{% if user.is_superuser == True and user.is_staff == True %}Admin{% else %}User{% endif %}</span>
                 </div>
             </div>
             <p class="main__content--email"><a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
             <p class="main__content--fullname">{{ user.first_name }} {{ user.last_name }}</p>
-            <p class="main__content__more-details">more details<span class="main__content--more-icon {% bs_icon "down-arrow" %}"></span></p>
+            <p class="main__content__more-details">more details</p>
             {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
 
             {% if request.user.username == user.username %}

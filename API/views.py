@@ -1,17 +1,14 @@
 from django.contrib.auth.models import Group
-
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
 from rest_framework.views import APIView
-from rest_framework import status
-
-
-from rest_framework import viewsets, permissions, generics
+from rest_framework import status, viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
 from rest_framework.reverse import reverse
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin, ListModelMixin
 from rest_framework.generics import CreateAPIView
-from rest_framework import status
 
 from .modelSerializer import UserSerializer, UserRegistrationSerializer, StudentSerializer, GroupSerializers
 from students.models import user, Student, StudentBin
@@ -98,7 +95,7 @@ class StudentRegistrationViewSet(CreateAPIView):
         serializer.save(Created_By=self.request.user, Created_At= datetime.now())
         return super().perform_create(serializer)
 
-class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
+class UserDestroy(generics.DestroyAPIView):
     queryset=user.objects.all()
     serializer_class=UserSerializer
     permission_classes=[permissions.IsAuthenticated]
@@ -110,6 +107,7 @@ class UserCreateRetrieveUpdateDestroy(generics.DestroyAPIView):
         return Response(f"{instance.user.username} has been deleted")
 
 
+
 class StudentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
@@ -117,9 +115,15 @@ class StudentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     lookup_field='roll_number'
 
 class UserCreateRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
-    queryset=user.objects.all()
-    serializer_class=UserSerializer
-    permission_classes=[permissions.IsAuthenticated]
+    queryset = user.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def update(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+        partial = kwargs.pop('partial', True)  
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

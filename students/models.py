@@ -2,6 +2,8 @@ from django.db import models
 from django.conf.global_settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL, MEDIA_URL
 
 from Users.models import user
+
+import os
 from datetime import datetime
 
 
@@ -30,7 +32,9 @@ grade = [
 ]
 
 def directory(instance, file):
-    return f"{MEDIA_ROOT}/{instance.user.username or instance.student.name}/{file}"
+    if not file:
+        file = 'default.jpg'
+    return os.path.join(f'{instance.id}/{dir}', file)
 
 
 class Student(models.Model):

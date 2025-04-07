@@ -61,12 +61,13 @@ class StudentForm(forms.ModelForm):
         fields=('__all__')
         exclude=['Created_By', 'Created_At']
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         user = kwargs.pop('Created_By', None)
         super().__init__(*args, **kwargs)
 
         if user:
-            self.fields['Created_By'].initial = user
+            self.fields['Created_By'].initial = request.user
+            self.fields['Created_By'].widget = forms.HiddenInput()
             self.fields['Created_By'].widget = forms.HiddenInput()
 
     def save(self, commit=True, user=None):

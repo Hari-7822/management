@@ -5,18 +5,25 @@ from management.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL, MEDIA_URL
 from datetime import datetime
 import os
 
-def directory(instance,dir, file):
-     return os.path.join(f'{MEDIA_ROOT}/{instance.id}/{dir}', file)
+# def directory(instance,dir, file):
+#     if not file:
+#         file = 'default.jpg'
+#     return os.path.join(f'{instance.user.id}/{dir}', file)
 
 
 class user(AbstractUser):
     
-    image=models.ImageField(upload_to=directory)
+    def directory(instance,dir, file):
+        if not file:
+            file = 'default.jpg'
+        return os.path.join(f'{instance.user.id}/{dir}', file)
+    
     def __str__(self):
         return f'{self.username}'
     def __repr__(self):    
         return f'User - {self.username}'
 
+    image=models.ImageField(upload_to=directory)
     
 
 class preferences(models.Model):
