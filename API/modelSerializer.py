@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'image': {'required': False}
         }
-    
+     
     def list(self, instance):
         pass
     
@@ -44,7 +44,6 @@ class GroupSerializers(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
-        
         exclude=["Created_By"]
     
     def get(self, request, *args, **kwargs):
@@ -55,6 +54,3 @@ class StudentSerializer(serializers.ModelSerializer):
     
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-    
-
-

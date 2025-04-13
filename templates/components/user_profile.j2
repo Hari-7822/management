@@ -20,6 +20,7 @@
             <p class="main__content--email"><a href= "mailto:{{user.email}}">{{ user.email }}</a></p>
             <p class="main__content--fullname">{{ user.first_name }} {{ user.last_name }}</p>
             <p class="main__content__more-details">more details</p>
+            {# {% include "./snippets.j2" %} #}
             {% if request.user.is_superuser == True and request.user.is_staff == True%}{{ Deleteform|crispy }}{% endif %}
 
             {% if request.user.username == user.username %}

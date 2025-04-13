@@ -1,0 +1,32 @@
+from django.db.models.signals import post_save, post_delete, pre_save, pre_delete, post_migrate
+from django.dispatch import receiver
+from django.apps import apps
+
+from .models import user
+
+#user db signals
+@receiver(pre_delete, sender=user)
+def UserPreDelete(sender, instance, **kwargs):
+    print(f"{instance.user.username} yet to be deleted")
+
+@receiver(post_save, sender=user)
+def user_created(sender, instance, created, **kwargs):
+        if created:
+            print(f"New user - {instance.username} is created")
+            try:
+                instance.key= password(key, key.max_length)
+                instance.save()
+                print(f"Key for {instance.username} is generated")
+            except Exception as E:
+                 print(f"User {instance.username} has been created wihtout key is")
+                 
+        
+        else:
+            print(f"{instance.username} has been updated")
+
+@receiver(post_delete, sender=user)
+def user_delete_signal(sender, instance, deleted, **kwargs):
+    if deleted:
+        print(f"{instance.username} has been deleted")
+    else:
+         pass

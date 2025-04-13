@@ -12,7 +12,6 @@ import os
 
 
 class user(AbstractUser):
-    
     def directory(instance,dir, file):
         if not file:
             file = 'default.jpg'
@@ -23,6 +22,7 @@ class user(AbstractUser):
     def __repr__(self):    
         return f'User - {self.username}'
 
+    Key= models.CharField()
     image=models.ImageField(upload_to=directory)
     
 
