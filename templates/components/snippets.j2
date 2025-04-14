@@ -1,5 +1,5 @@
-{# for code_snippets and DRY #}
-
+{# for code_snippets for DRY #}
+{% register tags%}
 {% macro dump_users(users) -%}
     <ul>
     {%- for user in users %}
@@ -18,14 +18,47 @@
 {% endcall %}
 
 
+{% macro TableFormatter(model, class_name) %}
 
-{% macro User_details(model, class_name) %}
     {% for field in model._meta.fields() %}
         <i class="{{class_name}}__{{field}}">{{field}}</i>
     {% endfor %}
 {%- endmacro %}
 
 
-{% macro name(args) %}
-    
+{% macro ajax(args) %}
+<script>
+    $(document).ready(function() {
+        function fetchData() {
+            $.ajax({
+                url: '{{ args.api_url }}',
+                method: '{{ args.method }}',
+                success: function(data) {
+                    let results = data;
+                    let html = '<ul>';
+                    results.forEach(function(item) {
+                        html += '<li> Name: ' + item.name + '</li>';
+                        html += '<li> Age: ' + item.age + '</li>';
+                        html += '<li> Grade: ' + item.grade + '</li>';
+                        html += '<li> Roll number: ' + item.roll_number + '</li>';
+                        html += '<li> Father name: ' + item.father_name + '</li>';
+                        html += '<li> Father age: ' + item.father_age + '</li>';
+                        html += '<li> Father occupation: ' + item.father_occupation + '</li>';
+                        html += '<li> Mother name: ' + item.mother_name + '</li>';
+                        html += '<li> Mother age: ' + item.mother_age + '</li>';
+                        html += '<li> Mother occupation: ' + item.mother_occupation + '</li>';
+                    });
+                    html += '</ul>';
+                    $('#data-container').html(html);
+                },
+                error: function(error) {
+                    $('#data-container').html('Error: ' + error.statusText);
+                }
+            });
+        }
+
+        fetchData();
+        setInterval(fetchData, 5000);
+    });
+</script>
 {% endmacro %}

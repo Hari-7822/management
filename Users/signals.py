@@ -1,10 +1,16 @@
 from django.db.models.signals import post_save, post_delete, pre_save, pre_delete, post_migrate
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
 from django.dispatch import receiver
 from django.apps import apps
 
 from .models import user
 
 #user db signals
+
+@receiver(user_logged_in)
+def login():
+    pass
+
 @receiver(pre_delete, sender=user)
 def UserPreDelete(sender, instance, **kwargs):
     print(f"{instance.user.username} yet to be deleted")

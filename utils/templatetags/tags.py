@@ -14,5 +14,8 @@ def InTime(request):
       return datetime.now() - request.user.last_login
 
 @register.filter
-def get_fields(obj):
-    return [(field.name, field.value_to_string(obj)) for field in obj._meta.fields]
+def get_fields(model):
+      try:
+            return [field.name for field in model._meta.fields]
+      except:
+            []

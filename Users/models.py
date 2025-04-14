@@ -26,6 +26,15 @@ class user(AbstractUser):
     image=models.ImageField(upload_to=directory)
     
 
+class UserSession(models.Model):
+    user = models.ForeignKey(user, on_delete=models.CASCADE)
+    login_time = models.DateTimeField(auto_now_add=True)
+    logout_time = models.DateTimeField(null=True, blank=True)
+
+    def time_spent(self):
+        if self.logout_time:
+            return self.logout_time - self.login_time
+        return None
 class preferences(models.Model):
     user=models.ForeignKey(user, on_delete=models.CASCADE)
     theme=models.CharField(max_length=122)
@@ -41,10 +50,8 @@ class Requests(models.Model):
     def __str__(self):
         return f"{self.user}"
 
-class UserBin(user):
-    pass
-
-
+# class UserBin(models.Model):
+#     pass
 
 class UserDeleteLog(user):
     pass

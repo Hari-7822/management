@@ -12,7 +12,7 @@ from rest_framework.generics import CreateAPIView
 
 from .modelSerializer import UserSerializer, UserRegistrationSerializer, StudentSerializer, GroupSerializers
 from students.models import user, Student, StudentBin
-from Users.models import UserBin
+# from Users.models import UserBin
 
 from datetime import datetime
 
@@ -102,7 +102,7 @@ class UserDestroy(generics.DestroyAPIView):
     lookup_field = 'pk'
     
     def perform_destroy(self, instance) :
-        UserBin.objects.create(**{field.name: getattr(instance, field.name) for field in instance._meta.fields})
+        # UserBin.objects.create(**{field.name: getattr(instance, field.name) for field in instance._meta.fields})
         super().perform_destroy(instance)
         return Response(f"{instance.user.username} has been deleted")
 

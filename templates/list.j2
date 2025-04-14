@@ -5,13 +5,16 @@
 {% if request.user.is_authenticated %}
 <ul>
 <h2>{{ request.user.username }}</h2>
-<ul>
-
-</ul>
 {% Count %}
+{# {% InTime:request.user %} #}
+{% for field_name in user|get_fields %}
+    <tr>
+        <th>{{ field_name }}</th>
+    </tr>
+{% endfor %}
+
 <div id='data-container'>
 </div>
-
     <script type="text/javascript">
         $(document).ready(function() {
             function fetchData() {
@@ -23,9 +26,9 @@
                         let html = '<ul>';
                         results.forEach(function(item) {
                             if (item.username) {
-                                html += '<li> Name: <a href="user/' + item.username + '" target="_blank" title="' + item.username + '-profile">' + item.username + '</a></li>';
+                                html += '<tr> <a href="user/' + item.username + '" target="_blank" title="' + item.username + '-profile">' + item.username + '</a></li>';
                             } else {
-                                html += '<li> Name: Unknown</li>';
+                                html += '<tr> Name: Unknown</tr>';
                             }
                         });
                         html += '</ul>';
@@ -43,6 +46,5 @@
     </script>
 
 {% endif %}
-
-
+{# <p> User not Authenticated, <a href="{% url 'user_login' %}">login</a>/<a href="{% url "user_register" %}">signup</a> to access </p> #}
 {% endblock %}
