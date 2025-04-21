@@ -10,7 +10,7 @@ from Users.views.main import *
 
 from API import views as api_view
 
-urlpatterns = [] + static(st.MEDIA_URL, document_root=st.MEDIA_ROOT)
+urlpatterns = []+static(st.MEDIA_URL, document_root=st.MEDIA_ROOT)
 urlpatterns = []+static(st.STATIC_URL, document_root=st.STATICFILES_DIRS)
 
 # handler404="students.views.defaults.NotFound"

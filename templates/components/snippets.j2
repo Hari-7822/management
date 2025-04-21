@@ -19,10 +19,19 @@
 
 
 {% macro TableFormatter(model, class_name) %}
+    <table> 
+        <tr class="header">
+            {% for field in model._meta.fields() %}
+                <th class="{{class_name}}__{{field}}">{{field}}</i>
+            {% endfor %}
+        </tr> 
+        <tr>
+            {% for user in users %}
+                <th class="{{class_name}}__{{user.username}}">{{user.fields}}</i>
+            {% endfor %}
+        </tr>
 
-    {% for field in model._meta.fields() %}
-        <i class="{{class_name}}__{{field}}">{{field}}</i>
-    {% endfor %}
+    </table>
 {%- endmacro %}
 
 
