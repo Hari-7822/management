@@ -58,7 +58,13 @@ get_routes=[
     path(r'api/students/', student_list, name='Api_students'),
     path(r'api/student/<int:roll_number>', api_view.StudentRetrieveUpdateDestroy.as_view(), name='Api_students'),
     
-    path(r'api/groups/', group_list, name='Api_groups')
+    path(r'api/groups/', group_list, name='Api_groups'),
+
+
+
+    # path(r'api/auth/key', group_list, name='Api_user_key_generate'),
+    path(r'api/auth/otp', group_list, name='Api_otp_generate'),
+    # path(r'api/auth/password', group_list, name='Api_password_generate'),
 ]
 
 post_routes=[

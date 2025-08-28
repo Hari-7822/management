@@ -25,6 +25,7 @@ def user_created(sender, instance, created, **kwargs):
                 print(f"Key for {instance.username} is generated")
             except Exception as E:
                  print(f"User {instance.username} has been created wihtout key is")
+                 instance.save()
                  
         
         else:

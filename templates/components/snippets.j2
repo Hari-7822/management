@@ -18,7 +18,7 @@
 {% endcall %}
 
 
-{% macro TableFormatter(model, class_name) %}
+{% macro TableConstructor(model, class_name) %}
     <table> 
         <tr class="header">
             {% for field in model._meta.fields() %}
@@ -27,7 +27,7 @@
         </tr> 
         <tr>
             {% for user in users %}
-                <th class="{{class_name}}__{{user.username}}">{{user.fields}}</i>
+                <td class="{{class_name}}__{{user.username}}">{{user.fields.value}}</td>
             {% endfor %}
         </tr>
 

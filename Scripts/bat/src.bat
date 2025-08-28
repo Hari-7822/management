@@ -1,14 +1,19 @@
 @echo off
-
+setlocal
+set "addr=192.168.29.240:8000"
 cd ../../
-timeout /T 2
-echo Activating the Venv. . . 
+ping localhost -n 3 >nul
+
+echo Activating the virtual environment...
 call venv\Scripts\activate
 
-timeout /T 3
-echo Running Django Project. . .
+ping localhost -n 4 >nul
 
-start http://127.0.0.1:8000/
+echo Running Django Project...
+start http://%addr%
 
-timeout /T 1
-start python manage.py runserver
+ping localhost -n 2 >nul
+z
+start cmd /k python manage.py runserver %addr%
+
+endlocal

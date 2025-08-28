@@ -36,3 +36,5 @@ def student_delete_signal(sender, instance, deleted, **kwargs):
         print(f"{instance.name} of class {instance.grade} has been deleted")
     else:
         pass
+
+    

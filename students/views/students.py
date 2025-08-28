@@ -47,7 +47,6 @@ def Student_View(request):
     data = Student.objects.all()
     return render(request, 'student_view.j2', {'student': data})
 
-
 # def PrintStudent(request, *input):
 #     query = get_object_or_404(Student, id= input.id, username= input.name)
 #     return render(request, 'print.j2', {'data':query})

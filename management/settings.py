@@ -10,7 +10,7 @@ env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['localhost','127.0.0.7', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',

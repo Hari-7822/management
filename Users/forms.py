@@ -25,7 +25,6 @@ class SignupForm(UserCreationForm):
         )
 
 
-
 class LoginForm(AuthenticationForm):
     class Meta:
         model = user

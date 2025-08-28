@@ -15,9 +15,7 @@ def user_view(request, username):
         if form.is_valid():
             pass
     else:
-        form = UserDeletionForm() 
-        
-        
+        form = UserDeletionForm()
     return render(request, 'components/user_profile.j2', {'user': data, 'image':data.image, 'DeleteUserform': form})
 
 def delete_self(request):

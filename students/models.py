@@ -21,7 +21,7 @@ grade = [
     ("III",'III'),
     ("IV",'IV'),
     ("V",'V'),
-    ("VI",'VI'),
+    ("VI",'VI'),    
     ("VII",'VII'),
     ("VIII",'VIII'),
     ("IX",'IX'),
