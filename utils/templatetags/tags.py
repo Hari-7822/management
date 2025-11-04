@@ -13,6 +13,10 @@ def Count():
 def InTime(request):
       return datetime.now() - request.user.last_login
 
+@register.simple_tag
+def OutTime(request):
+      return InTime - datetime.now()
+      
 @register.filter
 def get_fields(model):
       try:

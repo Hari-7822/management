@@ -1,5 +1,4 @@
 from pathlib import Path
-from .jazzmin import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
 
 import environ
 import os
@@ -8,9 +7,10 @@ env=environ.Env()
 env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', '127.0.0.1:8000']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'Users',
     'utils',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -152,3 +154,5 @@ REST_FRAMEWORK = {
     #     'user': '5/day'
     # }, 
 }
+
+from .custom_ad import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS

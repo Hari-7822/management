@@ -13,7 +13,7 @@ echo Running Django Project...
 start http://%addr%
 
 ping localhost -n 2 >nul
-z
+
 start cmd /k python manage.py runserver %addr%
 
 endlocal

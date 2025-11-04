@@ -1,17 +1,39 @@
 <!DOCTYPE html>
+</html> <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+{% load bootstrap_icons %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management {% block title %}{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" type='text/css' href="{% static './libs/bootstrap.min.css' %}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="theme-color" content="#f7cac9">
 
+    <title>{% block title %}Management {% endblock %}</title>
+        <link rel="stylesheet" type='text/css' href="{% static 'libs/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" type='text/css' href="{% static 'css/base.css' %}"/>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>   
+
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block statics %}{% endblock %}
 </head>
 <body>
-    <div class="">
-        {% block content %}
-        {% endblock %}
-    </div>
+
+ 
+    {% block content %}
+        
+
+    {% endblock %}
+
+    
 </body>
-</html> 
+
+<script>
+{% block script %}
+    
+{% endblock %}
+</script>
+
+</html>

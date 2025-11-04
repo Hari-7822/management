@@ -54,4 +54,4 @@ class Requests(models.Model):
 #     pass
 
 class UserDeleteLog(user):
-    pass
+    pass 
