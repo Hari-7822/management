@@ -22,7 +22,7 @@ def api_root(req, format=None):
         'users': reverse('Api_users', request=req, format=format),
         'Student': reverse('Api_students', request=req, format=format),
         'Groups': reverse("Api_groups", request=req, format=format)
-    })
+    }) 
 
 class UserViewset(viewsets.ModelViewSet):
     queryset=user.objects.all()
@@ -67,8 +67,7 @@ class UserViewset(viewsets.ModelViewSet):
 class StudentViewset(viewsets.ModelViewSet):
     queryset=Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes=[permissions.IsAuthenticated]
-
+    permission_classes=[permissions.IsAuthenticated] 
 
     def perform_create(self, serializer):
         serializer.save(Created_By=self.request.user, Created_At= datetime.now())
@@ -87,13 +86,29 @@ class UserRegistrationViewset(CreateAPIView):
 
 
 class StudentRegistrationViewSet(CreateAPIView):
-    queryset=Student.objects.all()
-    serializer_class=StudentSerializer
-    permission_classes=[permissions.IsAuthenticated]
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def create(self, request, *args, **kwargs):
+        many = isinstance(request.data, list)
+        serializer = self.get_serializer(data=request.data, many=many)
+        serializer.is_valid(raise_exception=True)
+        
+        if many:
+            for item in serializer.validated_data:
+                item['Created_By'] = request.user
+                item['Created_At'] = datetime.now()
+        else:
+            serializer.validated_data['Created_By'] = request.user
+            serializer.validated_data['Created_At'] = datetime.now()
+        
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     def perform_create(self, serializer):
-        serializer.save(Created_By=self.request.user, Created_At= datetime.now())
-        return super().perform_create(serializer)
+        serializer.save()
 
 class UserDestroy(generics.DestroyAPIView):
     queryset=user.objects.all()

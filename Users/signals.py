@@ -39,9 +39,3 @@ def user_delete_signal(sender, instance, deleted, **kwargs):
     else:
          pass
 
-@receiver(post_save, sender=<sender>, dispatch_uid=<string>)
-def method(sender, instance, **kwargs):
-    last_field_change = FieldHistory.objects.filter(field_name=<your_field_which_you_want_to_check_for_change>,
-                                          object_id=instance.id).last()
-    if last_field_change:
-         #do your thing

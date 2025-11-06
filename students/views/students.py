@@ -13,7 +13,7 @@ from datetime import datetime
 
 @login_required(login_url="user/login/")
 def index(request):
-    return render(request, 'list.j2')
+    return render(request, 'student_view.j2', {"student":Student})
 
 @login_required(login_url="user/login")
 # @permission_required()

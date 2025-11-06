@@ -45,6 +45,10 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
         exclude=["Created_By"]
+        extra_kwargs = {
+            'image': {'required': False}
+        }
+     
     
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

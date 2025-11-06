@@ -90,7 +90,6 @@ class Student(models.Model):
         ordering = ['grade', 'roll_number']
 
 
-    
     def __repr__(self):
         return f'Student - {self.name} of class {self.grade}'
 
