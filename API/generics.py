@@ -6,7 +6,7 @@ from .modelSerializer import UserSerializer, StudentSerializer
 from students.models import user, Student
 
 
-class UserProfileView(generics.RetrieveAPIView):
+class UserProfileView(generics.RetrieveUpdateDestroyAPIView):
     queryset= user.objects.all()
     serializer_class= UserSerializer
     permission_classes=[permissions.IsAdminUser, permissions.IsAuthenticated]
@@ -36,5 +36,19 @@ class StudentProfileView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes=[permissions.IsAdminUser, permissions.IsAuthenticated]
 
 
-    
+    def get(self, req, *args, **kwargs):
+        instance=self.get_object()
+        serializer=self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def post(self, serializer, *args, **kwargs):
+        instance=serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+
+    def delete(self, req, *args, **kwargs):
+        instance=self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     

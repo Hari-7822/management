@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+.google-input {
+  position: relative;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.google-input input {
+  width: 100%;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #202124;
+  background: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.google-input input:hover {
+  border-color: #bec2c9;
+}
+
+.google-input input:focus {
+  border: 2px solid #1a73e8;
+  padding: 12px 14px;
+}
+
+.google-input input.error {
+  border-color: #d93025;
+}
+
+.google-input input.error:focus {
+  border: 2px solid #d93025;
+}
+
+.google-input input:focus ~ label {
+  top: -8px;
+  left: 11px;
+  font-size: 12px;
+  color: #1a73e8;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.google-input input:not([value=""]) ~ label, .google-input input:valid ~ label {
+  top: -8px;
+  left: 11px;
+  font-size: 12px;
+  color: #1a73e8;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.google-input input.error ~ label {
+  color: #d93025;
+}
+
+.google-input input.error ~ label:not([value=""]), .google-input input.error ~ label:valid {
+  top: -8px;
+  left: 11px;
+  font-size: 12px;
+  color: #d93025;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.google-input label {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  color: #5f6368;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  padding: 0 4px;
+}
+
+.input-sm {
+  width: 250px;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #202124;
+  background: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-sm:hover {
+  border-color: #bec2c9;
+}
+
+.input-sm:focus {
+  border: 2px solid #1a73e8;
+  padding: 12px 14px;
+}
+
+.input-sm.error {
+  border-color: #d93025;
+}
+
+.input-sm.error:focus {
+  border: 2px solid #d93025;
+}
+
+.input-md {
+  width: 350px;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #202124;
+  background: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-md:hover {
+  border-color: #bec2c9;
+}
+
+.input-md:focus {
+  border: 2px solid #1a73e8;
+  padding: 12px 14px;
+}
+
+.input-md.error {
+  border-color: #d93025;
+}
+
+.input-md.error:focus {
+  border: 2px solid #d93025;
+}
+
+.input-lg {
+  width: 500px;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #202124;
+  background: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-lg:hover {
+  border-color: #bec2c9;
+}
+
+.input-lg:focus {
+  border: 2px solid #1a73e8;
+  padding: 12px 14px;
+}
+
+.input-lg.error {
+  border-color: #d93025;
+}
+
+.input-lg.error:focus {
+  border: 2px solid #d93025;
+}
+
+.input-full {
+  width: 100%;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #202124;
+  background: transparent;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-full:hover {
+  border-color: #bec2c9;
+}
+
+.input-full:focus {
+  border: 2px solid #1a73e8;
+  padding: 12px 14px;
+}
+
+.input-full.error {
+  border-color: #d93025;
+}
+
+.input-full.error:focus {
+  border: 2px solid #d93025;
+}

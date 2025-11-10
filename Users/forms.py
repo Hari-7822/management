@@ -4,10 +4,11 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.hashers import make_password
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, Submit
+from crispy_forms.layout import Layout, Field, Submit, Div, HTML
 
 from .models import user, UserDeleteLog, preferences
 from API.modelSerializer import UserSerializer
+from utils.mixins import FormInputMixin
 
 class SignupForm(UserCreationForm):
     username=forms.CharField(max_length=50)
@@ -25,15 +26,30 @@ class SignupForm(UserCreationForm):
         )
 
 
-class LoginForm(AuthenticationForm):
-    class Meta:
-        model = user
-
+class LoginForm(FormInputMixin, AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Create User'))
-    
+        
+        for field_name in self.fields:
+            self.fields[field_name].widget.attrs.update({
+                'value': '',
+                'onkeyup': "this.setAttribute('value', this.value);"
+            })
+        
+        self.fields['username'].label = 'Username'
+        self.fields['password'].label = 'Password'
+
+        self.helper.layout = Layout(
+            Div(
+                Field('username'),
+                css_class='google-input' 
+            ),
+            Div(
+                Field('password'),
+                css_class='google-input'
+            ),
+        )
+
     def is_valid(self):
         valid = super(LoginForm, self).is_valid()
         if not valid:
@@ -45,7 +61,6 @@ class LoginForm(AuthenticationForm):
 
 class UserDeletionForm(forms.Form):
     confirmation = forms.BooleanField(label="Remove User")
-        
     class Meta:
         model= UserDeleteLog
 

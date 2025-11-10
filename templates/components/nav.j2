@@ -1,20 +1,35 @@
-    {% block sidebar %}
-    <aside class = "sidebar">
-        <ul class="sidebar__nav">
-            <li class="sidebar__nav--elem"><a href="{% url 'index' %}">Home</a></li>
-
-            <li class="sidebar__nav--elem"><a href="{% url 'user_informatics' %}">Page-1</a></li>
-            
-            <li class="sidebar__nav--elem"><a href="{% url 'user_perms' %}">Page-2</a></li>
-
-            <li class="sidebar__nav--elem"><a href="{% url 'user_settings' %}">Page-3</a></li>
-            {% if request.user.is_superuser is True %}
-                <li class="sidebar__nav--elem__group"><a class="sidebar__nav--elem__group--role" href="{% url 'admin:index' %}">Admin</a></li>
-            {% elif request.user.is_staff is True and request.user.is_superuser is False %}
-
-            {% endif %}
-            </aside>
-            
-        </ul>
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-semibold" href="{% url 'index' %}">Your Logo</a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" aria-controls="navbarNav" 
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_informatics' %}">Page-1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_perms' %}">Page-2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_settings' %}">Page-3</a>
+                </li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link text-primary fw-medium" href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    {% endblock %}
+</nav>
+{% endblock %}

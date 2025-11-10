@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'django_sass',
-    'django_bootstrap_icons',
+    'django_bootstrap_icons',   
     
     'psycopg2',
 

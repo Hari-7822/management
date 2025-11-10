@@ -1,0 +1,7 @@
+<div class="google-input">
+    {{ field }}
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {% if field.errors %}
+        <span class="error-text">{{ field.errors.0 }}</span>
+    {% endif %}
+</div>
