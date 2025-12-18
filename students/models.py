@@ -66,6 +66,11 @@ class Student(models.Model):
     Created_At = models.DateTimeField(auto_now_add=True)
     Created_By = models.ForeignKey(user, related_name="created_students", on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "Student"
+        verbose_name_plural = "Students"
+        ordering = ['grade', 'roll_number']
+
     def get_siblings(self):
         return Student.objects.filter(
             father_name=self.father_name,
@@ -83,12 +88,6 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.roll_number}"
-
-    class Meta:
-        verbose_name = "Student"
-        verbose_name_plural = "Students"
-        ordering = ['grade', 'roll_number']
-
 
     def __repr__(self):
         return f'Student - {self.name} of class {self.grade}'

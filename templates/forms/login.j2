@@ -8,7 +8,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container form">
+<div class="form">
     <h2 class="form__header">Login</h2>
     <form method="POST" class="form__form container form-group">
         {% csrf_token %}
@@ -18,7 +18,7 @@
                 Login
             </button>
             <p class="form__footer--text">
-                Don't have account 
+                Don't have an account 
                 <a class="form__footer--link" href="{% url 'user_register' %}">SignUp</a>
             </p>
         </div>

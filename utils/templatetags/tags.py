@@ -23,3 +23,9 @@ def get_fields(model):
             return [field.name for field in model._meta.fields]
       except:
             []
+
+
+@register.filter
+def FilterBar(model, target):
+      return model
+

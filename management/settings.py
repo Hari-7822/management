@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'rest_framework',
 
     "students",
-    'chat',
     'Users',
     'utils',
 ]
@@ -156,3 +155,8 @@ REST_FRAMEWORK = {
 }
 
 from .custom_ad import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+
+CRISPY_CLASS_CONVERTERS = {
+    # 'textinput': "form-control google-input",
+    # 'emailinput': "form-control google-input",
+}

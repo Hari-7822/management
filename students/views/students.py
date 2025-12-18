@@ -25,7 +25,7 @@ def Add_Student(request):
             # messages.success(request, f"Student {stu_name} is added successfully") if form.save() else messages.error(request, f"Student not added");form=StudentForm(request.POST)
             return redirect("list/")
     else:
-        form = StudentForm()
+        form = StudentForm(request)
 
     return render(request, 'forms/student.j2', {'form':form})
 

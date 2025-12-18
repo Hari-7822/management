@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.hashers import make_password
 
 from crispy_forms.helper import FormHelper
@@ -25,39 +25,22 @@ class SignupForm(UserCreationForm):
             # Fieldset('password').css_class('fa fa-eye')   
         )
 
-
-class LoginForm(FormInputMixin, AuthenticationForm):
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = user
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        for field_name in self.fields:
-            self.fields[field_name].widget.attrs.update({
-                'value': '',
-                'onkeyup': "this.setAttribute('value', this.value);"
-            })
-        
-        self.fields['username'].label = 'Username'
-        self.fields['password'].label = 'Password'
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Create User'))
 
-        self.helper.layout = Layout(
-            Div(
-                Field('username'),
-                css_class='google-input' 
-            ),
-            Div(
-                Field('password'),
-                css_class='google-input'
-            ),
-        )
+    # def is_valid(self):
+    #     valid = super(LoginForm, self).is_valid()
+    #     if not valid:
+    #         return False
 
-    def is_valid(self):
-        valid = super(LoginForm, self).is_valid()
-        if not valid:
-            return False
-
-        serializer = UserSerializer(data=self.cleaned_data)
-        return serializer.is_valid() 
-
+    #     serializer = UserSerializer(data=self.cleaned_data)
+    #     return serializer.is_valid() 
 
 class UserDeletionForm(forms.Form):
     confirmation = forms.BooleanField(label="Remove User")

@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from Users.views.auth import UserSignup, UserLogin
 from students.views.students import *
 from Users.views.main import *
+from Users.forms import LoginForm
 
 from API import views as api_view
 
@@ -21,20 +22,21 @@ admin_urls = [
 
 main=[
     path('', index, name='index'),
-    path('info/', info, name="user_informatics"),
+    path('users/', info, name="user_informatics"),      
+    # path('info/', info, name="user_informatics"),
     path('perms/', perms, name="user_perms"),
     path('settings/', user_settings, name="user_settings"),
 ]
 
 forms = [
-    path('user/login/', LoginView.as_view(template_name='./forms/login.j2'), name="user_login"),
+    path('user/login/', LoginView.as_view(template_name='./forms/login.j2', authentication_form=LoginForm), name="login"),
     path("user/add_user/", UserSignup, name="user_register"),
     path("user/logout/", LogoutView.as_view(), name="user_logout"),
     path("user/change_password/", PasswordChangeView.as_view(), name="change_user_passord"),
 ]
 
 students = [
-    path("student/add", Add_Student, name='add_student'),
+    path("student/add/", Add_Student, name='add_student'),
     path("student/Edit/", Add_Student, name='add_student'),
     path("student/list/", Student_View, name='student_list'),
 ]

@@ -26,7 +26,7 @@ def delete_self(request):
 #Settings
 @login_required(login_url="user/login")
 def info(request):
-    return "Info"
+    return render(request, 'list.j2', {"user": user})
 
 @login_required(login_url="user/login")
 def perms(request):

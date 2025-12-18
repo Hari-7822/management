@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.forms import ValidationError
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
@@ -71,13 +72,17 @@ class StudentForm(forms.ModelForm):
             self.fields['Created_By'].widget = forms.HiddenInput()
 
     def save(self, commit=True, user=None):
-        inst =super().save(commit=False)
+        inst = super().save(commit=False)
         if user:
             inst.Created_By = user
+        
+        serializer = StudentSerializer(data=self.cleaned_data)
+        if not serializer.is_valid():
+            raise ValidationError(serializer.errors)
+        
         if commit:
             inst.save()
-        return inst
-    
+        return inst    
     def is_valid(self):
         valid = super(StudentForm, self).is_valid()
         if not valid:

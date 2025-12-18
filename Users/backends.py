@@ -4,9 +4,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 class CustomAuthBackend(ModelBackend):
-    """
-    Authenticate using username/email with password or access_key (key).
-    """
     def authenticate(self, request, username=None, password=None, **kwargs):
         key = kwargs.get('key')
         email = kwargs.get('email')
