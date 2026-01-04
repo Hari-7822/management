@@ -10,6 +10,7 @@ from .models import Student, grade
 from Users.models import user
 from API.modelSerializer import StudentSerializer, UserSerializer
 
+
 class SignupForm(UserCreationForm):
     Image=forms.ImageField()
     class Meta:

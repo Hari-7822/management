@@ -1,16 +1,16 @@
-import { Text, View } from "react-native";
-import Card from "../src/Components/theme";
-export default function Index() {
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import LoginScreen from '@/src/Pages/LoginPage';
+
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Card title="Sample Card" content="This is a sample card." />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <LoginScreen />
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
