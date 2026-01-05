@@ -30,6 +30,11 @@ class PasswordGenerator:
         otp = random.sample(self.numbers,length)
         cache.set(f"OTP for {request.user}", otp, timeout=duration)
         return "".join(otp)
+
+    def generate_key(self, request, length:int) -> str:
+        key = random.sample(self.numbers,length=4)
+        cache.set(f"OTP for {request.user}", key)
+        return "".join(key)
     
     def validate(self,request) -> bool:
         return True if str(request.otp) == str(cache.get(f"OTP for {request.user}")) else False

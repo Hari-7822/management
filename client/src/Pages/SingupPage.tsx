@@ -1,40 +1,60 @@
 import React, { useState } from "react";
-import {View,Text,TextInput,TouchableOpacity,StyleSheet,Alert,ActivityIndicator} from "react-native";
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator} from "react-native";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 
 const API_BASE_URL = "api";
 
-const loginFn = async (credentials: { email: string; password: string }) => {
-  const response = await axios.post(`${API_BASE_URL}/login`, credentials);
+type SignupPayload = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+const signupFn = async (payload: SignupPayload) => {
+  const response = await axios.post(`${API_BASE_URL}/signup/`, payload);
   return response.data;
 };
 
-export default function LoginScreen() {
+export default function SignupScreen() {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const mutation = useMutation({
-    mutationFn: loginFn,
+    mutationFn: signupFn,
     onSuccess: (data) => {
-      Alert.alert("Success", "Logged in! Token: " + data.token);
+      Alert.alert("Success", "Account created successfully!");
     },
-    onError: (error) => {
-      Alert.alert("Error", error.message || "Login failed");
+    onError: (error: any) => {
+      const msg =
+        error?.response?.data?.detail ||
+        error?.response?.data?.error ||
+        error?.message ||
+        "Signup failed";
+      Alert.alert("Error", msg);
     },
   });
 
-  const handleLogin = () => {
-    if (!email || !password) {
+  const handleSignup = () => {
+    if (!username || !email || !password) {
       Alert.alert("Error", "Please fill all fields");
       return;
     }
-    mutation.mutate({ email, password });
+    mutation.mutate({ username, email, password });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Sign Up</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+        autoCapitalize="none"
+      />
 
       <TextInput
         style={styles.input}
@@ -55,18 +75,20 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         style={[styles.button, mutation.isPending && styles.buttonDisabled]}
-        onPress={handleLogin}
+        onPress={handleSignup}
         disabled={mutation.isPending}
       >
         {mutation.isPending ? (
           <ActivityIndicator color="#fff" />
         ) : (
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Sign Up</Text>
         )}
       </TouchableOpacity>
 
       {mutation.isError && (
-        <Text style={styles.error}>Error: {mutation.error?.message}</Text>
+        <Text style={styles.error}>
+          Error: {(mutation.error as any)?.message}
+        </Text>
       )}
     </View>
   );
