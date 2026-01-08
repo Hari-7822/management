@@ -3,9 +3,9 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out, user_lo
 from django.dispatch import receiver
 from django.apps import apps
 
-from .models import user
+from Users.models import user
+from students.models import Student, StudentBin
 
-#user db signals
 
 @receiver(user_logged_in)
 def login():
@@ -39,3 +39,30 @@ def user_delete_signal(sender, instance, deleted, **kwargs):
     else:
          pass
 
+
+def class_wrapper(self, request, target):
+    if request.method == "GET":
+        return target
+    else:
+        return "Bad request"
+        
+
+@receiver(post_save, sender=Student)
+def student_created(sender, instance, created, **kwargs):
+    if created:
+        print(f"New Student - {instance.name} of {instance.grade} is created.")
+    else:
+        print(f"{instance.name} of {instance.grade} has been updated.")
+
+
+@receiver(post_delete, sender=Student)
+def student_delete_signal(sender, instance, deleted, **kwargs):
+    if deleted:
+
+        print(f"{instance.name} of class {instance.grade} has been deleted")
+    else:
+        pass
+
+
+
+    

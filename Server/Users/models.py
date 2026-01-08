@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from management.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL, MEDIA_URL
-
+from Server.utils.contrib.backends import PasswordGenerator
 from datetime import datetime
 import os
 
@@ -22,7 +22,7 @@ class user(AbstractUser):
     def __repr__(self):    
         return f'User - {self.username}'
 
-    Key= models.CharField()
+    Key= models.CharField(defualt=PasswordGenerator.generate_key(), max_length=4, blank=False)
     image=models.ImageField(upload_to=directory)
     
 

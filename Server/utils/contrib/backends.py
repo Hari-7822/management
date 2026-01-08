@@ -1,7 +1,10 @@
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth import get_user_model
 from django.core.cache import cache
 import random
 
-import random
+User = get_user_model()
 
 class PasswordGenerator:
     upper = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -39,4 +42,23 @@ class PasswordGenerator:
     def validate(self,request) -> bool:
         return True if str(request.otp) == str(cache.get(f"OTP for {request.user}")) else False
     
+class CustomAuthBackend(ModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        key = kwargs.get('key')
+        email = kwargs.get('email')
+        user = None
+        try:
+            if username:
+                user = User.objects.get(username=username)
+            elif email:
+                user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return None
+        if user:
+            if password and user.check_password(password):
+                return user
+            if key and user.access_key and check_password(key, user.access_key):
+                return user
+        return None
+
     
