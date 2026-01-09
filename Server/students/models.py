@@ -63,7 +63,7 @@ class Student(models.Model):
         verbose_name="Siblings"
     )
 
-    Created_At = models.DateTimeField(auto_now_add=True)
+    Created_At = models.DateTimeField(auto_now_add=True, default=datetime.now())
     Created_By = models.ForeignKey(user, related_name="created_students", on_delete=models.CASCADE)
 
     class Meta:

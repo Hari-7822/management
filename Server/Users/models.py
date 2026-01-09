@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from management.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL, MEDIA_URL
-from Server.utils.contrib.backends import PasswordGenerator
+from utils.contrib.backends import PasswordGenerator
 from datetime import datetime
 import os
 
